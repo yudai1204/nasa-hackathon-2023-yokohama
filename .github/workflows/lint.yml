@@ -1,0 +1,38 @@
+name: ci-pr
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+concurrency:
+  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+
+jobs:
+  eslint:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set Node.js 18.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18.x
+      - name: ci
+        run: npm ci
+      - name: Lint
+        run: npm run lint
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set Node.js 18.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18.x
+      - name: ci
+        run: npm ci
+      - name: Build
+        run: npm run build
