@@ -16,7 +16,7 @@
     "@types/three": "^0.156.0",
     "axios": "^1.5.1",
     "framer-motion": "^10.16.4",
-    "next": "latest",
+    "next": "^13.5.4",
     "react": "latest",
     "react-dom": "latest",
     "react-hook-form": "^7.46.2",
