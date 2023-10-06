@@ -10,7 +10,6 @@
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "func-style": ["error", "expression"],
-    "react/no-unknown-property": "error",
     "react/self-closing-comp": "error",
     "multiline-ternary": "off",
     "no-var": "error",
