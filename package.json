@@ -20,6 +20,7 @@
     "react": "latest",
     "react-dom": "latest",
     "react-hook-form": "^7.46.2",
+    "react-icons": "^4.11.0",
     "three": "^0.157.0"
   },
   "devDependencies": {
@@ -31,7 +32,9 @@
     "eslint": "^8.50.0",
     "eslint-config-next": "latest",
     "eslint-config-prettier": "^9.0.0",
+    "next-auth": "^4.23.2",
     "prettier": "^3.0.3",
+    "swiper": "^10.3.1",
     "typescript": "latest"
   }
 }
