@@ -1,7 +1,7 @@
 import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
+const handler = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   const targetUrl = req.query.url as string;
 
   if (!targetUrl) {
@@ -26,3 +26,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(500).json({ error: "An error occurred while proxying the request" });
   }
 }
+
+export default handler;
