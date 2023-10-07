@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { MoonquakeData } from "@/type";
+import { MoonquakeData, isDeepMoonquake } from "@/type";
 import { convertToCoordinates } from "@/utils/coordinateTransformation";
 
 type Props = { radius: number; moonquake: MoonquakeData };
@@ -9,15 +9,20 @@ export const Pin = (props: Props) => {
   const { latitude, longitude } = moonquake.location;
 
   const position = useMemo(() => {
-    const phi = (90 - latitude) * (Math.PI / 180);
-    const theta = (longitude + 180) * (Math.PI / 180);
+    const phi = ((90 - latitude) * Math.PI) / 180;
+    const theta = (-longitude * Math.PI) / 180;
     return convertToCoordinates(radius, phi, theta);
   }, [latitude, longitude, radius]);
+
+  let color = "orange";
+  if (isDeepMoonquake(moonquake)) {
+    color = "violet";
+  }
 
   return (
     <mesh position={position}>
       <sphereGeometry args={[0.5, 32, 32]} />
-      <meshPhysicalMaterial color="red" />
+      <meshPhysicalMaterial color={color} />
     </mesh>
   );
 };
