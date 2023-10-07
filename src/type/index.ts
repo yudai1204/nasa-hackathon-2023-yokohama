@@ -12,7 +12,7 @@ export interface Location {
 }
 
 export interface Moonquake {
-  time: Time | undefined;
+  time?: Time;
   location: Location;
 }
 
