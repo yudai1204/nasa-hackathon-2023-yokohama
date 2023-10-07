@@ -2,7 +2,11 @@ import { Box } from "@chakra-ui/react";
 import React, { useEffect, useRef } from "react";
 import { mapLibreLogic } from "./useMapLibre";
 
-export const MapComponent = () => {
+type Props = {
+  setIsMap: React.Dispatch<React.SetStateAction<boolean>>;
+};
+export const MapComponent = (props: Props) => {
+  const { setIsMap } = props;
   const mapContainer = useRef(null);
 
   useEffect(() => {
@@ -11,10 +15,11 @@ export const MapComponent = () => {
       latitude: 0,
       longitude: 0,
       zoom: 4,
+      setIsMap,
     };
 
     mapLibreLogic(mapPosition);
-  }, [mapContainer]);
+  }, [mapContainer, setIsMap]);
 
   return (
     <>

@@ -1,13 +1,17 @@
 import maplibregl from "maplibre-gl";
 
+const minZoom = 3;
+const maxZoom = 6;
+
 type Props = {
   container: HTMLElement | null;
   latitude: number;
   longitude: number;
   zoom: number;
+  setIsMap: React.Dispatch<React.SetStateAction<boolean>>;
 };
 export const mapLibreLogic = (props: Props) => {
-  const { container, latitude, longitude, zoom } = props;
+  const { container, latitude, longitude, zoom, setIsMap } = props;
   if (container === null) return;
   const map = new maplibregl.Map({
     container,
@@ -45,8 +49,16 @@ export const mapLibreLogic = (props: Props) => {
       ],
     },
     center: [latitude, longitude],
-    minZoom: 0,
-    maxZoom: 9,
+    minZoom,
+    maxZoom,
+  });
+
+  map.on("zoom", () => {
+    // console.log(map.getZoom());
+    if (map.getZoom() <= minZoom) {
+      console.log("minZoom");
+      setIsMap(false);
+    }
   });
 
   map.on("click", "points-layer", (e) => {

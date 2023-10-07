@@ -5,7 +5,7 @@ import { MainCanvas } from "./mainCanvas";
 import { MapComponent } from "./mapLibre";
 
 export const Main = () => {
-  const [isMap, setIsMap] = useState(true);
+  const [isMap, setIsMap] = useState(false);
   return (
     <Box w="100%" h="100%" position="relative">
       <Header />
@@ -21,7 +21,7 @@ export const Main = () => {
       >
         {isMap ? "toThree" : "toMap"}
       </Button>
-      {isMap ? <MapComponent /> : <MainCanvas />}
+      {isMap ? <MapComponent setIsMap={setIsMap} /> : <MainCanvas />}
     </Box>
   );
 };
