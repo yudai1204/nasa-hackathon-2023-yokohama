@@ -7,7 +7,7 @@ import { MainCanvas } from "./useThree/mainCanvas";
 export const Main = () => {
   const [isMap, setIsMap] = useState(false);
   return (
-    <Box w="100%" h="100%" position="relative">
+    <Box w="100%" h="100vh" position="relative" overflow="none">
       <Header />
       {/* 仮の切り替えボタン */}
       <Button
