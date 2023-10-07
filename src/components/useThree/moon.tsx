@@ -13,10 +13,10 @@ export const Moon = () => {
 
   useEffect(() => {
     const fetchMoonquake = async () => {
-      const shallowMoonquakes = (await fetchShallowMoonquakeCSV()) as MoonquakeData[];
-      const deepMoonquakes = (await fetchDeepMoonquakeCSV()) as MoonquakeData[];
-      const artificialImpacts = (await fetchArtificialImpactCSV()) as MoonquakeData[];
-      const quakes = shallowMoonquakes.concat(deepMoonquakes).concat(artificialImpacts);
+      const shallowMoonquakes = await fetchShallowMoonquakeCSV();
+      const deepMoonquakes = await fetchDeepMoonquakeCSV();
+      const artificialImpacts = await fetchArtificialImpactCSV();
+      const quakes = [...shallowMoonquakes, ...deepMoonquakes, ...artificialImpacts] as MoonquakeData[];
       setMoonquakeData(quakes);
     };
     fetchMoonquake();
