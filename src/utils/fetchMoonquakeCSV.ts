@@ -10,17 +10,17 @@ export const fetchShallowMoonquakeCSV = (): Promise<ShallowMoonquake[]> => {
         const { Year, Day, H, M, S, Lat, Long, Magnitude, Comments } = data as ShallowMoonquakeCSVData;
         const quake: ShallowMoonquake = {
           time: {
-            year: Year as number,
-            day: Day,
-            hour: H,
-            minutes: M,
-            seconds: S,
+            year: Number(Year),
+            day: Number(Day),
+            hour: Number(H),
+            minutes: Number(M),
+            seconds: Number(S),
           },
           location: {
-            latitude: Lat,
-            longitude: Long,
+            latitude: Number(Lat),
+            longitude: Number(Long),
           },
-          magnitude: Magnitude,
+          magnitude: Number(Magnitude),
           comments: Comments,
         };
         return quake;
@@ -43,13 +43,13 @@ export const fetchDeepMoonquakeCSV = (): Promise<DeepMoonquake[]> => {
           A: A,
           side: Side,
           location: {
-            latitude: Lat,
-            longitude: Long,
+            latitude: Number(Lat),
+            longitude: Number(Long),
           },
-          latitudeError: Lat_Error,
-          longitudeError: Long_Error,
-          depth: Depth,
-          depthError: Depth_Error,
+          latitudeError: Number(Lat_Error),
+          longitudeError: Number(Long_Error),
+          depth: Number(Depth),
+          depthError: Number(Depth_Error),
           assumed: "",
         };
         return quake;

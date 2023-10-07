@@ -16,13 +16,15 @@ export const Moon = () => {
       const shallows = (await fetchShallowMoonquakeCSV()) as MoonquakeData[];
       const deeps = (await fetchDeepMoonquakeCSV()) as MoonquakeData[];
       setMoonquakeData(shallows.concat(deeps));
-      console.log(
-        shallows
-          .concat(deeps)
-          .map((m) => m.time?.year)
-          .filter((y) => y != undefined)
-          .map((z) => typeof z),
-      );
+      shallows.concat(deeps).forEach((m) => {
+        console.log(m, m.time, m.location);
+      });
+      // console.log(
+      //   shallows.concat(deeps),
+      //   // .map((m) => m.time?.year)
+      //   // .filter((y) => y != undefined)
+      //   // .map((z) => typeof z),
+      // );
     };
     fetchMoonquake();
   }, []);

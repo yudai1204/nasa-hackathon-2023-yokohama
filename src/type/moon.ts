@@ -41,25 +41,25 @@ export const isDeepMoonquake = (data: MoonquakeData): data is DeepMoonquake => "
 export const isArtificialImpact = (data: MoonquakeData): data is ArtificialImpact => "ai" in data;
 
 export type ShallowMoonquakeCSVData = {
-  Year: number;
-  Day: number;
-  H: number;
-  M: number;
-  S: number;
-  Lat: number;
-  Long: number;
-  Magnitude: number;
+  Year: string;
+  Day: string;
+  H: string;
+  M: string;
+  S: string;
+  Lat: string;
+  Long: string;
+  Magnitude: string;
   Comments: string;
 };
 
 export type DeepMoonquakeCSVData = {
   A: string;
   Side: string;
-  Lat: number;
-  Lat_Error: number;
-  Long: number;
-  Long_Error: number;
-  Depth: number;
-  Depth_Error: number;
+  Lat: string;
+  Lat_Error: string;
+  Long: string;
+  Long_Error: string;
+  Depth: string;
+  Depth_Error: string;
   Assumed: string;
 };
