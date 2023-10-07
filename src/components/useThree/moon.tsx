@@ -6,7 +6,7 @@ import { MoonquakeData } from "@/type";
 import { fetchArtificialImpactCSV, fetchDeepMoonquakeCSV, fetchShallowMoonquakeCSV } from "@/utils/fetchMoonquakeCSV";
 
 export const Moon = () => {
-  const radius = 5;
+  const radius = 100;
   const moonMap = useLoader(TextureLoader, "moon.webp");
 
   const [moonquakeData, setMoonquakeData] = useState<MoonquakeData[]>([]);

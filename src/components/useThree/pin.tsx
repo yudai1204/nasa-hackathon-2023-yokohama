@@ -23,7 +23,7 @@ export const Pin = (props: Props) => {
 
   return (
     <mesh position={position}>
-      <sphereGeometry args={[0.5, 32, 32]} />
+      <sphereGeometry args={[5, 32, 32]} />
       <meshPhysicalMaterial color={color} />
     </mesh>
   );

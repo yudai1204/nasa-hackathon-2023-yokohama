@@ -1,8 +1,8 @@
 import { Box, Button } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { Header } from "./header";
-import { MainCanvas } from "./mainCanvas";
 import { MapComponent } from "./mapLibre";
+import { MainCanvas } from "./useThree/mainCanvas";
 
 export const Main = () => {
   const [isMap, setIsMap] = useState(true);
