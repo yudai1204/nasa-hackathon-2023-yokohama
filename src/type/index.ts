@@ -16,12 +16,12 @@ export interface Moonquake {
   location: Location;
 }
 
-export type ShallowMoonquake = Moonquake & {
+export interface ShallowMoonquake extends Moonquake {
   magnitude: number;
   comments: string;
-};
+}
 
-export type DeepMoonquake = Moonquake & {
+export interface DeepMoonquake extends Moonquake {
   A: string;
   side: string;
   latitudeError: number;
@@ -29,7 +29,7 @@ export type DeepMoonquake = Moonquake & {
   depth: number;
   depthError: number;
   assumed: string;
-};
+}
 
 export interface ArtificialImpact extends Moonquake {
   ai: string;
