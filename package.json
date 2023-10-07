@@ -12,6 +12,7 @@
     "@chakra-ui/react": "^2.8.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@react-three/drei": "^9.86.3",
     "@react-three/fiber": "^8.14.3",
     "@types/three": "^0.156.0",
     "axios": "^1.5.1",
