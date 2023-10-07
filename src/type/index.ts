@@ -1,6 +1,9 @@
 export interface Time {
-  year: number | null;
-  day: number | null;
+  year: number;
+  day: number;
+  hour: number;
+  minutes: number;
+  seconds: number;
 };
 
 export interface Location {
@@ -9,14 +12,11 @@ export interface Location {
 };
 
 export interface ShallowMoonquake extends Time, Location {
-  hour: number;
-  minute: number;
-  second: number;
   magnitude: number;
   comments: string;
 };
 
-export interface DeepMoonquake extends Time, Location {
+export interface DeepMoonquake extends Location {
   A: string;
   side: string;
   latitudeError: number;
@@ -28,7 +28,4 @@ export interface DeepMoonquake extends Time, Location {
 
 export interface ArtificialImpact extends Time, Location {
   ai: string;
-  hour: number;
-  minutes: number;
-  seconds: number;
 };
