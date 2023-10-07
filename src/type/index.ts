@@ -31,8 +31,8 @@ export type DeepMoonquake = Moonquake & {
   assumed: string;
 };
 
-export type ArtificialImpact = Moonquake & {
+export interface ArtificialImpact extends Moonquake {
   ai: string;
-};
+}
 
 export type MoonquakeData = ShallowMoonquake | DeepMoonquake | ArtificialImpact;
