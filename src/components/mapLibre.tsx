@@ -1,3 +1,4 @@
+import { Box } from "@chakra-ui/react";
 import React, { useEffect, useRef } from "react";
 import { mapLibreLogic } from "./useMapLibre";
 
@@ -9,7 +10,7 @@ export const MapComponent = () => {
       container: mapContainer.current,
       latitude: 0,
       longitude: 0,
-      zoom: 1,
+      zoom: 4,
     };
 
     mapLibreLogic(mapPosition);
@@ -17,7 +18,7 @@ export const MapComponent = () => {
 
   return (
     <>
-      <div ref={mapContainer} style={{ width: "100%", height: "100%" }} />
+      <Box ref={mapContainer} w="100%" h="100%" bgColor="black" />
     </>
   );
 };

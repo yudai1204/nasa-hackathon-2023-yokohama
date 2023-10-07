@@ -1,23 +1,17 @@
-// import fs from "fs/promises";
-// import path from "path";
 import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 import sharp from "sharp";
 
 const combineImages = async (req: NextApiRequest, res: NextApiResponse) => {
   const targetUrl = req.query.url as string;
-  // const targetUrl =
-  //   "https://trek.nasa.gov/tiles/Moon/EQ/LRO_WAC_Mosaic_Global_303ppd_v02/1.0.0//default/default028mm/2/3/1.jpg";
   const sliceIdx = targetUrl.search(/\d+\/\d+\/\d+.[jpg|png]/g);
   const sliced = [targetUrl.slice(0, sliceIdx), targetUrl.slice(sliceIdx)];
   const [z, y, x] = sliced[1].match(/\d+/g) || [0, 0, 0];
   const filetype = sliced[1].slice(-3);
-  console.log(z, y, x);
 
   try {
-    const image1Url = "https://trek.nasa.gov/" + sliced[0] + `${z}/${y}/${Number(x) * 2}.${filetype}`;
-    const image2Url = "https://trek.nasa.gov/" + sliced[0] + `${z}/${y}/${Number(x) * 2 + 1}.${filetype}`;
-    console.log(image1Url, image2Url);
+    const image1Url = "https://" + sliced[0] + `${z}/${y}/${Number(x) * 2}.${filetype}`;
+    const image2Url = "https://" + sliced[0] + `${z}/${y}/${Number(x) * 2 + 1}.${filetype}`;
 
     const image1Response = await axios.get(image1Url, { responseType: "arraybuffer" });
     const image2Response = await axios.get(image2Url, { responseType: "arraybuffer" });
@@ -36,6 +30,7 @@ const combineImages = async (req: NextApiRequest, res: NextApiResponse) => {
         bottom: 0,
         left: 0,
         right: image2Info.width,
+        background: { r: 0, g: 0, b: 0, alpha: 0 },
       })
       .composite([
         {
@@ -47,7 +42,6 @@ const combineImages = async (req: NextApiRequest, res: NextApiResponse) => {
       .toBuffer();
 
     // 横方向を1/2に圧縮（高さはそのまま）
-    // const compressedWidth = Math.floor(image1Info.height);
     const compressedImageBuffer = await sharp(combinedImageBuffer)
       .resize(image1Info.height, image1Info.height, { fit: "fill" })
       .toBuffer();
