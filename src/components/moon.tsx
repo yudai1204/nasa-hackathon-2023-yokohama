@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { TextureLoader } from "three";
 import { Pin } from "./pin";
 import { MoonquakeData } from "@/type";
-import { fetchDeepMoonquakeCSV, fetchShallowMoonquakeCSV } from "@/utils/fetchMoonquakeCSV";
+import { fetchArtificialImpactCSV, fetchDeepMoonquakeCSV, fetchShallowMoonquakeCSV } from "@/utils/fetchMoonquakeCSV";
 
 export const Moon = () => {
   const radius = 5;
@@ -13,18 +13,11 @@ export const Moon = () => {
 
   useEffect(() => {
     const fetchMoonquake = async () => {
-      const shallows = (await fetchShallowMoonquakeCSV()) as MoonquakeData[];
-      const deeps = (await fetchDeepMoonquakeCSV()) as MoonquakeData[];
-      setMoonquakeData(shallows.concat(deeps));
-      shallows.concat(deeps).forEach((m) => {
-        console.log(m, m.time, m.location);
-      });
-      // console.log(
-      //   shallows.concat(deeps),
-      //   // .map((m) => m.time?.year)
-      //   // .filter((y) => y != undefined)
-      //   // .map((z) => typeof z),
-      // );
+      const shallowMoonquakes = (await fetchShallowMoonquakeCSV()) as MoonquakeData[];
+      const deepMoonquakes = (await fetchDeepMoonquakeCSV()) as MoonquakeData[];
+      const artificialImpacts = (await fetchArtificialImpactCSV()) as MoonquakeData[];
+      const quakes = shallowMoonquakes.concat(deepMoonquakes).concat(artificialImpacts);
+      setMoonquakeData(quakes);
     };
     fetchMoonquake();
   }, []);

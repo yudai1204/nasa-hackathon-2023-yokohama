@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { MoonquakeData, isDeepMoonquake } from "@/type";
+import { MoonquakeData, isArtificialImpact, isDeepMoonquake } from "@/type";
 import { convertToCoordinates } from "@/utils/coordinateTransformation";
 
 type Props = { radius: number; moonquake: MoonquakeData };
@@ -17,6 +17,8 @@ export const Pin = (props: Props) => {
   let color = "orange";
   if (isDeepMoonquake(moonquake)) {
     color = "violet";
+  } else if (isArtificialImpact(moonquake)) {
+    color = "blue";
   }
 
   return (

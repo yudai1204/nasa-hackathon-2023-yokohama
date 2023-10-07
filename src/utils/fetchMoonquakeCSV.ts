@@ -1,5 +1,12 @@
 import { csvDataFetch } from "./fetchCSV";
-import { DeepMoonquake, DeepMoonquakeCSVData, ShallowMoonquake, ShallowMoonquakeCSVData } from "@/type";
+import {
+  ArtificialImpact,
+  ArtificialImpactCSVData,
+  DeepMoonquake,
+  DeepMoonquakeCSVData,
+  ShallowMoonquake,
+  ShallowMoonquakeCSVData,
+} from "@/type";
 
 export const fetchShallowMoonquakeCSV = (): Promise<ShallowMoonquake[]> => {
   return csvDataFetch(
@@ -51,6 +58,36 @@ export const fetchDeepMoonquakeCSV = (): Promise<DeepMoonquake[]> => {
           depth: Number(Depth),
           depthError: Number(Depth_Error),
           assumed: "",
+        };
+        return quake;
+      });
+    })
+    .catch((e) => {
+      console.error(e);
+      return [];
+    });
+};
+
+export const fetchArtificialImpactCSV = (): Promise<ArtificialImpact[]> => {
+  return csvDataFetch(
+    "https://pds-geosciences.wustl.edu/lunar/urn-nasa-pds-apollo_seismic_event_catalog/data/nakamura_1983_ai_locations.csv",
+  )
+    .then((res) => {
+      return res.map((data) => {
+        const { AI, Lat, Long, Y, JD, Hour, Min, Sec } = data as ArtificialImpactCSVData;
+        const quake: ArtificialImpact = {
+          ai: AI,
+          location: {
+            latitude: Number(Lat),
+            longitude: Number(Long),
+          },
+          time: {
+            year: Number(Y),
+            day: Number(JD),
+            hour: Number(Hour),
+            minutes: Number(Min),
+            seconds: Number(Sec),
+          },
         };
         return quake;
       });

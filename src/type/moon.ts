@@ -63,3 +63,14 @@ export type DeepMoonquakeCSVData = {
   Depth_Error: string;
   Assumed: string;
 };
+
+export type ArtificialImpactCSVData = {
+  AI: string;
+  Lat: string;
+  Long: string;
+  Y: string;
+  JD: string;
+  Hour: string;
+  Min: string;
+  Sec: string;
+};
