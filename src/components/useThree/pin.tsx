@@ -48,12 +48,5 @@ const getMaxSize = (moonquake: MoonquakeData): number => {
 };
 
 const getColor = (moonquake: MoonquakeData): string => {
-  if (isShallowMoonquake(moonquake)) {
-    return "orange";
-  } else if (isDeepMoonquake(moonquake)) {
-    return "violet";
-  } else if (isArtificialImpact(moonquake)) {
-    return "blue";
-  }
-  return "orange";
+  return ["orange", "violet", "blue"][moonquake.type];
 };
