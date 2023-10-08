@@ -1,6 +1,7 @@
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Moon } from "./moon";
+import { Universe } from "./universe";
 
 export const MainCanvas = () => {
   return (
@@ -17,6 +18,7 @@ export const MainCanvas = () => {
       <ambientLight args={[0xffffff]} intensity={0.5} />
       <OrbitControls minDistance={15} maxDistance={70} />
       <Moon />
+      <Universe />
     </Canvas>
   );
 };
