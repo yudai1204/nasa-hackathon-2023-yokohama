@@ -85,7 +85,7 @@ export const fetchArtificialImpactCSV = (): Promise<ArtificialImpact[]> => {
             longitude: Number(Long),
           },
           time: {
-            year: Number(Y),
+            year: Number(Y) + 1900,
             day: Number(JD),
             hour: Number(Hour),
             minutes: Number(Min),

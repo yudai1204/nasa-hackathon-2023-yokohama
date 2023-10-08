@@ -5,14 +5,15 @@ import { MapComponent } from "./mapLibre";
 import { Panel } from "./panel";
 import { MainCanvas } from "./useThree/mainCanvas";
 import type { MoonquakeData } from "@/type";
-import { Option } from "@/type/option";
+import { Option, OptionConstants } from "@/type/option";
 import { fetchArtificialImpactCSV, fetchDeepMoonquakeCSV, fetchShallowMoonquakeCSV } from "@/utils/fetchMoonquakeCSV";
 
 export const Main = () => {
   const [isMap, setIsMap] = useState(false);
   const [moonquakeData, setMoonquakeData] = useState<MoonquakeData[]>([]);
   const [option, setOption] = useState<Option>({
-    year: 1900,
+    minYear: OptionConstants.minYear,
+    maxYear: OptionConstants.maxYear,
   });
 
   useEffect(() => {
@@ -28,7 +29,7 @@ export const Main = () => {
 
   return (
     <Box w="100%" h="100vh" position="relative" overflow="none">
-      <Header />
+      <Header option={option} setOption={setOption} />
       <Panel />
       {/* 仮の切り替えボタン */}
       <Button
@@ -47,7 +48,7 @@ export const Main = () => {
         <MapComponent setIsMap={setIsMap} />
       </Box>
       <Box w="100%" h="100%" position="absolute" top={0} left={0} zIndex={isMap ? -1 : 0}>
-        <MainCanvas setIsMap={setIsMap} moonquakeData={moonquakeData} />
+        <MainCanvas setIsMap={setIsMap} moonquakeData={moonquakeData} option={option} />
       </Box>
     </Box>
   );
