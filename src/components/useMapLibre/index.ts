@@ -14,10 +14,9 @@ type Props = {
   zoom: number;
   setIsMap: React.Dispatch<React.SetStateAction<boolean>>;
   setChoiceMoonquake: React.Dispatch<React.SetStateAction<MoonquakeData | null>>;
-  setMap: React.Dispatch<React.SetStateAction<maplibregl.Map | null>>;
 };
 export const mapLibreLogic = (props: Props) => {
-  const { container, latitude, longitude, zoom, setIsMap, setChoiceMoonquake, setMap } = props;
+  const { container, latitude, longitude, zoom, setIsMap, setChoiceMoonquake } = props;
   if (container === null) return;
   const map = new maplibregl.Map({
     container,
@@ -78,7 +77,6 @@ export const mapLibreLogic = (props: Props) => {
   });
 
   map.on("load", async () => {
-    setMap(map);
     // 月地震データを読み込む
     const shallowMoonquakes = (await fetchShallowMoonquakeCSV()) as MoonquakeData[];
     const deepMoonquakes = (await fetchDeepMoonquakeCSV()) as MoonquakeData[];
