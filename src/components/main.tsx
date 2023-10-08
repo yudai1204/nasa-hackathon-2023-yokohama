@@ -37,10 +37,10 @@ export const Main = () => {
         {isMap ? "toThree" : "toMap"}
       </Button>
 
-      <Box w="100%" h="100%" position="absolute" top={0} left={0} zIndex={isMap ? 1 : 0}>
+      <Box w="100%" h="100%" position="absolute" top={0} left={0} zIndex={isMap ? 0 : -1}>
         <MapComponent setIsMap={setIsMap} />
       </Box>
-      <Box w="100%" h="100%" position="absolute" top={0} left={0} zIndex={isMap ? 0 : 1}>
+      <Box w="100%" h="100%" position="absolute" top={0} left={0} zIndex={isMap ? -1 : 0}>
         <MainCanvas setIsMap={setIsMap} moonquakeData={moonquakeData} />
       </Box>
     </Box>
