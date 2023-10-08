@@ -10,9 +10,13 @@ import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
+  RangeSlider,
+  RangeSliderFilledTrack,
+  RangeSliderTrack,
+  RangeSliderThumb,
 } from "@chakra-ui/react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import { Option } from "@/type/option";
+import { Option, OptionConstants } from "@/type/option";
 
 type Props = {
   option: Option;
@@ -89,9 +93,42 @@ export const Header = (props: Props) => {
               <SliderThumb />
             </Slider>
           </Box>
+
+          <YearSlider option={option} setOption={setOption} />
           <Text>©ESO/S. Brunier</Text>
         </VStack>
       </SlideFade>
+    </Box>
+  );
+};
+
+type YearSliderProps = {
+  option: Option;
+  setOption: React.Dispatch<React.SetStateAction<Option>>;
+};
+
+const YearSlider = (props: YearSliderProps) => {
+  const { option, setOption } = props;
+  const isAll = option.minYear === OptionConstants.minYear && option.maxYear === OptionConstants.maxYear;
+  const label = isAll ? "All" : `${option.minYear} - ${option.maxYear}`;
+
+  return (
+    <Box w="100%">
+      <Text>
+        Year Range: <Text as="span">{label}</Text>
+      </Text>
+      <RangeSlider
+        min={OptionConstants.minYear}
+        max={OptionConstants.maxYear}
+        defaultValue={[option.minYear, option.maxYear]}
+        onChange={(value) => setOption({ ...option, minYear: value[0], maxYear: value[1] })}
+      >
+        <RangeSliderTrack>
+          <RangeSliderFilledTrack />
+        </RangeSliderTrack>
+        <RangeSliderThumb index={0} />
+        <RangeSliderThumb index={1} />
+      </RangeSlider>
     </Box>
   );
 };
