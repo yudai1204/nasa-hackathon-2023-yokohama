@@ -1,0 +1,77 @@
+{
+  "type": "FeatureCollection",
+  "name": "moon_place4en",
+  "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": null,
+        "name": "東の海: Mare Orientale",
+        "detail": "One of the lunar seas located on the western edge of the moon's near side.",
+        "diameter": "900km"
+      },
+      "geometry": { "type": "Point", "coordinates": [-967290.936413429677486, -4404598.561348143965006] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": null,
+        "name": "嵐の大洋: Oceanus Procellarum",
+        "detail": "The largest sea on the moon. Luna 9 and Surveyor 1 landed here.",
+        "diameter": "2568km"
+      },
+      "geometry": { "type": "Point", "coordinates": [6805479.628517054021358, 4567995.647833354771137] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": null,
+        "name": "コペルニクス: Copernicus",
+        "detail": "A relatively new crater that formed 800 million years ago.",
+        "diameter": "96.07km"
+      },
+      "geometry": { "type": "Point", "coordinates": [15564626.965529715642333, 2127858.039322938770056] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": null,
+        "name": "雨の海: Mare Imbrium",
+        "detail": "The second-largest lunar sea after the Ocean of Storms.",
+        "diameter": "1123km"
+      },
+      "geometry": { "type": "Point", "coordinates": [15647450.326699128374457, 7097259.709487777203321] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": null,
+        "name": "ティコ: Tycho",
+        "detail": "A new crater formed 180 million years ago.",
+        "diameter": "85.3km"
+      },
+      "geometry": { "type": "Point", "coordinates": [17635210.994765065610409, -9757294.28848796710372] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": null,
+        "name": "プラトー: Plato",
+        "detail": "A crater located in the northern part.",
+        "diameter": "101km"
+      },
+      "geometry": { "type": "Point", "coordinates": [17966504.439442716538906, 11445486.170882012695074] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": null,
+        "name": "グリマルディ: Grimaldi",
+        "detail": "near the western limp of the Moon",
+        "diameter": "230km"
+      },
+      "geometry": { "type": "Point", "coordinates": [4880413.374675309285522, -1267899.768623035401106] }
+    }
+  ]
+}

@@ -16,6 +16,12 @@ export const mapLibreLogic = (props: Props) => {
   const map = new maplibregl.Map({
     container,
     zoom,
+    dragRotate: false,
+    //dragPan: false,
+    touchZoomRotate: false,
+    minPitch: 0,
+    pitchWithRotate: false,
+    renderWorldCopies: false,
     style: {
       version: 8,
       // 背景地図のソースを追加
