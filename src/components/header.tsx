@@ -18,7 +18,7 @@ import { AiOutlineClose, AiOutlineMenu, AiFillInfoCircle } from "react-icons/ai"
 export const Header = () => {
   const { isOpen, onToggle } = useDisclosure();
   return (
-    <Box position="absolute" top={0} left={0} userSelect="none" h="fit-content" w="280px" zIndex={1} overflowY="scroll">
+    <Box position="absolute" top={0} left={0} userSelect="none" h="fit-content" w="280px" zIndex={1}>
       <Icon
         position="absolute"
         top="24px"
@@ -30,7 +30,7 @@ export const Header = () => {
         zIndex={10}
       />
       <SlideFade in={isOpen} offsetX={-80} offsetY={0} unmountOnExit>
-        <VStack bgColor="gray.300" h="100vh" pt="72px" px="26px" gap={2} color="gray.600">
+        <VStack bgColor="gray.300" h="100vh" pt="72px" px="26px" gap={2} color="gray.600" overflowY="scroll">
           <Box w="100%">
             <Text fontSize={24} fontWeight="medium">
               Filter
