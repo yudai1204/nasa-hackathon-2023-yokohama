@@ -3,7 +3,7 @@ import { genQuakeSourceData } from "./moonQuake";
 import type { MoonquakeData } from "@/type/moon";
 import { fetchArtificialImpactCSV, fetchDeepMoonquakeCSV, fetchShallowMoonquakeCSV } from "@/utils/fetchMoonquakeCSV";
 
-const minZoom = 0;
+const minZoom = 3;
 const maxZoom = 6;
 const moonQuakeRad = 16;
 
