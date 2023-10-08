@@ -38,6 +38,8 @@ export interface ArtificialImpact extends Moonquake {
 
 export type MoonquakeData = ShallowMoonquake | DeepMoonquake | ArtificialImpact;
 export const isShallowMoonquake = (data: MoonquakeData): data is ShallowMoonquake => data.type === 0;
+export const isDeepMoonquake = (data: MoonquakeData): data is DeepMoonquake => data.type === 1;
+export const isArtificialImpact = (data: MoonquakeData): data is ArtificialImpact => data.type === 2;
 
 export type ShallowMoonquakeCSVData = {
   Year: string;
