@@ -4,11 +4,15 @@ import { Header } from "./header";
 import { MapComponent } from "./mapLibre";
 import { MainCanvas } from "./useThree/mainCanvas";
 import type { MoonquakeData } from "@/type";
+import { Option } from "@/type/option";
 import { fetchArtificialImpactCSV, fetchDeepMoonquakeCSV, fetchShallowMoonquakeCSV } from "@/utils/fetchMoonquakeCSV";
 
 export const Main = () => {
   const [isMap, setIsMap] = useState(false);
   const [moonquakeData, setMoonquakeData] = useState<MoonquakeData[]>([]);
+  const [option, setOption] = useState<Option>({
+    year: 1900,
+  });
 
   useEffect(() => {
     const fetchMoonquake = async () => {
@@ -23,7 +27,7 @@ export const Main = () => {
 
   return (
     <Box w="100%" h="100vh" position="relative" overflow="none">
-      <Header />
+      <Header option={option} setOption={setOption} />
       {/* 仮の切り替えボタン */}
       <Button
         onClick={() => {
