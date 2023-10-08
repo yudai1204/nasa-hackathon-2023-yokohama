@@ -13,9 +13,10 @@ type Props = {
   longitude: number;
   zoom: number;
   setIsMap: React.Dispatch<React.SetStateAction<boolean>>;
+  setChoiceMoonquake: React.Dispatch<React.SetStateAction<MoonquakeData | null>>;
 };
 export const mapLibreLogic = (props: Props) => {
-  const { container, latitude, longitude, zoom, setIsMap } = props;
+  const { container, latitude, longitude, zoom, setIsMap, setChoiceMoonquake } = props;
   if (container === null) return;
   const map = new maplibregl.Map({
     container,
@@ -87,7 +88,7 @@ export const mapLibreLogic = (props: Props) => {
     map.addLayer({
       id: "shallow-moonquake-layer",
       type: "circle",
-      source: "moonquake-source",
+      source: "shallow-moonquake-source",
       paint: {
         "circle-radius": moonQuakeRad,
         "circle-color": "#FFA50055",
@@ -137,8 +138,26 @@ export const mapLibreLogic = (props: Props) => {
       },
     });
 
-    map.on("click", "geojson-points", (e) => {
-      console.log(e);
+    map.on("click", "shallow-moonquake-layer", (e) => {
+      const feature = e.features?.length && e.features[0];
+      if (!feature) return;
+      const properties = JSON.parse(feature.properties.prop);
+      console.log(properties);
+      setChoiceMoonquake(properties);
+    });
+    map.on("click", "deep-moonquake-layer", (e) => {
+      const feature = e.features?.length && e.features[0];
+      if (!feature) return;
+      const properties = JSON.parse(feature.properties.prop);
+      console.log(properties);
+      setChoiceMoonquake(properties);
+    });
+    map.on("click", "artical-moonquake-layer", (e) => {
+      const feature = e.features?.length && e.features[0];
+      if (!feature) return;
+      const properties = JSON.parse(feature.properties.prop);
+      console.log(properties);
+      setChoiceMoonquake(properties);
     });
   });
 
