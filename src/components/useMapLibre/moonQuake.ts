@@ -4,11 +4,7 @@ import type { MoonquakeData } from "@/type/moon";
 export const genQuakeSourceData = (moonquakeData: MoonquakeData[]): GeoJSONSourceSpecification => {
   const features = moonquakeData.map((data) => ({
     type: "Feature",
-    properties: {
-      id: null,
-      name: "Moonquake",
-      detail: "One of the moonquake",
-    },
+    properties: { prop: JSON.stringify(data) },
     geometry: { type: "Point", coordinates: [data.location.longitude, data.location.latitude] },
   }));
 
