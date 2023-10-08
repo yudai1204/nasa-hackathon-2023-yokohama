@@ -41,7 +41,7 @@ export const mapLibreLogic = (props: Props) => {
         test: {
           type: "raster",
           tiles: [
-            "https://trek.nasa.gov/tiles/Moon/EQ/Apollo15_MetricCam_ClrConf_Global_1024ppd/1.0.0//default/default028mm/{z}/{y}/{x}.png",
+            "https://trek.nasa.gov/tiles/Moon/EQ/LRO_LOLAKaguya_ClrHillshade_60N60S_512ppd/1.0.0//default/default028mm/{z}/{y}/{x}.png",
           ],
           tileSize: 256,
         },
