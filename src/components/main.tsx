@@ -15,6 +15,7 @@ export const Main = () => {
     minYear: OptionConstants.minYear,
     maxYear: OptionConstants.maxYear,
   });
+  const [choiceMoonquake, setChoiceMoonquake] = useState<MoonquakeData | null>(null);
 
   useEffect(() => {
     const fetchMoonquake = async () => {
@@ -30,7 +31,7 @@ export const Main = () => {
   return (
     <Box w="100%" h="100vh" position="relative" overflow="none">
       <Header option={option} setOption={setOption} />
-      <Panel />
+      <Panel choiceMoonquake={choiceMoonquake} />
       {/* 仮の切り替えボタン */}
       <Button
         onClick={() => {
@@ -48,7 +49,12 @@ export const Main = () => {
         <MapComponent setIsMap={setIsMap} />
       </Box>
       <Box w="100%" h="100%" position="absolute" top={0} left={0} zIndex={isMap ? -1 : 0}>
-        <MainCanvas setIsMap={setIsMap} moonquakeData={moonquakeData} option={option} />
+        <MainCanvas
+          setIsMap={setIsMap}
+          moonquakeData={moonquakeData}
+          option={option}
+          setChoiceMoonquake={setChoiceMoonquake}
+        />
       </Box>
     </Box>
   );

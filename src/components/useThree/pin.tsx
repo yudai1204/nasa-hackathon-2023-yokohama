@@ -4,10 +4,14 @@ import { SphereGeometry } from "three";
 import { MoonquakeData, isShallowMoonquake } from "@/type";
 import { convertToCoordinates } from "@/utils/coordinateTransformation";
 
-type Props = { radius: number; moonquake: MoonquakeData };
+type Props = {
+  radius: number;
+  moonquake: MoonquakeData;
+  setChoiceMoonquake: React.Dispatch<React.SetStateAction<MoonquakeData | null>>;
+};
 
 export const Pin = (props: Props) => {
-  const { radius, moonquake } = props;
+  const { radius, moonquake, setChoiceMoonquake } = props;
   const { latitude, longitude } = moonquake.location;
 
   const sphereRef = useRef<SphereGeometry>(null);
@@ -17,6 +21,10 @@ export const Pin = (props: Props) => {
     const theta = (-longitude * Math.PI) / 180;
     return convertToCoordinates(radius, phi, theta);
   }, [latitude, longitude, radius]);
+
+  const onChoice = () => {
+    setChoiceMoonquake(moonquake);
+  };
 
   const maxSize = useMemo(() => getMaxSize(moonquake), [moonquake]);
   const color = useMemo(() => getColor(moonquake), [moonquake]);
@@ -33,7 +41,12 @@ export const Pin = (props: Props) => {
   });
 
   return (
-    <mesh position={position} onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}>
+    <mesh
+      position={position}
+      onClick={onChoice}
+      onPointerOver={() => setHovered(true)}
+      onPointerOut={() => setHovered(false)}
+    >
       <sphereGeometry ref={sphereRef} args={[hovered ? stateRadius : maxSize, 32, 32]} />
       <meshPhysicalMaterial color={color} transparent={true} opacity={0.4} />
     </mesh>

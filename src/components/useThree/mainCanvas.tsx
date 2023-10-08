@@ -9,10 +9,11 @@ type Props = {
   moonquakeData: MoonquakeData[];
   setIsMap: React.Dispatch<React.SetStateAction<boolean>>;
   option: Option;
+  setChoiceMoonquake: React.Dispatch<React.SetStateAction<MoonquakeData | null>>;
 };
 export const MainCanvas = (props: Props) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { moonquakeData, setIsMap, option } = props;
+  const { moonquakeData, setIsMap, option, setChoiceMoonquake } = props;
 
   return (
     <Canvas
@@ -27,7 +28,7 @@ export const MainCanvas = (props: Props) => {
       <directionalLight position={[1, 1, 1]} intensity={0.8} />
       <ambientLight args={[0xffffff]} intensity={0.5} />
       <OrbitControls minDistance={250} maxDistance={500} />
-      <Moon option={option} moonquakeData={moonquakeData} />
+      <Moon option={option} moonquakeData={moonquakeData} setChoiceMoonquake={setChoiceMoonquake} />
       <Universe />
     </Canvas>
   );
