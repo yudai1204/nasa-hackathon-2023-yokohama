@@ -21,7 +21,13 @@ export const Main = () => {
       >
         {isMap ? "toThree" : "toMap"}
       </Button>
-      {isMap ? <MapComponent setIsMap={setIsMap} /> : <MainCanvas />}
+
+      <Box w="100%" h="100%" position="absolute" top={0} left={0} zIndex={isMap ? 1 : 0}>
+        <MapComponent setIsMap={setIsMap} />
+      </Box>
+      <Box w="100%" h="100%" position="absolute" top={0} left={0} zIndex={isMap ? 0 : 1}>
+        <MainCanvas />
+      </Box>
     </Box>
   );
 };

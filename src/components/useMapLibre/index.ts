@@ -23,14 +23,14 @@ export const mapLibreLogic = (props: Props) => {
         "moon-tiles": {
           type: "raster",
           tiles: [
-            "/api/combineImage?url=trek.nasa.gov/tiles/Moon/EQ/LRO_WAC_Mosaic_Global_303ppd_v02/1.0.0//default/default028mm/{z}/{y}/{x}.jpg",
+            "https://trek.nasa.gov/tiles/Moon/EQ/LRO_WAC_Mosaic_Global_303ppd_v02/1.0.0//default/default028mm/{z}/{y}/{x}.jpg",
           ],
           tileSize: 256,
         },
         test: {
           type: "raster",
           tiles: [
-            "/api/combineImage?url=trek.nasa.gov/tiles/Moon/EQ/Apollo15_MetricCam_ClrConf_Global_1024ppd/1.0.0//default/default028mm/{z}/{y}/{x}.png",
+            "https://trek.nasa.gov/tiles/Moon/EQ/Apollo15_MetricCam_ClrConf_Global_1024ppd/1.0.0//default/default028mm/{z}/{y}/{x}.png",
           ],
           tileSize: 256,
         },
@@ -61,6 +61,7 @@ export const mapLibreLogic = (props: Props) => {
     if (map.getZoom() <= minZoom) {
       console.log("minZoom");
       setIsMap(false);
+      map.setZoom(minZoom + 0.5);
     }
   });
 
