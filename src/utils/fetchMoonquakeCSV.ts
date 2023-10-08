@@ -16,6 +16,7 @@ export const fetchShallowMoonquakeCSV = (): Promise<ShallowMoonquake[]> => {
       return res.map((data) => {
         const { Year, Day, H, M, S, Lat, Long, Magnitude, Comments } = data as ShallowMoonquakeCSVData;
         const quake: ShallowMoonquake = {
+          type: "shallow",
           time: {
             year: Number(Year),
             day: Number(Day),
@@ -47,6 +48,7 @@ export const fetchDeepMoonquakeCSV = (): Promise<DeepMoonquake[]> => {
       return res.map((data) => {
         const { A, Side, Lat, Lat_Error, Long, Long_Error, Depth, Depth_Error } = data as DeepMoonquakeCSVData;
         const quake: DeepMoonquake = {
+          type: "deep",
           A: A,
           side: Side,
           location: {
@@ -76,6 +78,7 @@ export const fetchArtificialImpactCSV = (): Promise<ArtificialImpact[]> => {
       return res.map((data) => {
         const { AI, Lat, Long, Y, JD, Hour, Min, Sec } = data as ArtificialImpactCSVData;
         const quake: ArtificialImpact = {
+          type: "artificial",
           ai: AI,
           location: {
             latitude: Number(Lat),
