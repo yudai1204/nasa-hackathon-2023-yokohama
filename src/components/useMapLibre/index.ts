@@ -67,6 +67,7 @@ export const mapLibreLogic = (props: Props) => {
     if (map.getZoom() <= minZoom) {
       console.log("minZoom");
       setIsMap(false);
+      map.setZoom(minZoom + 0.5);
     }
   });
 
