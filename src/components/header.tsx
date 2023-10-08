@@ -98,11 +98,11 @@ export const Header = (props: Props) => {
               <Text fontSize={24} fontWeight="medium" pt={2}>
                 Settings
               </Text>
-              <Box w="100%" pt={2} pb={1}>
-                <Switch size="md" colorScheme="teal" defaultChecked fontSize={18}>
-                  Auto Rotate
-                </Switch>
-              </Box>
+              <SwitchSetting
+                name="Auto Rotate"
+                checked={option.autoRotate}
+                onChange={() => setOption({ ...option, autoRotate: !option.autoRotate })}
+              />
               <Box w="100%" pb={1}>
                 <Switch size="md" colorScheme="teal" defaultChecked fontSize={18}>
                   Height Map
@@ -182,6 +182,23 @@ export const Header = (props: Props) => {
         </SlideFade>
       </Box>
     </>
+  );
+};
+
+type SwitchSettingProps = {
+  name: string;
+  checked: boolean;
+  onChange: () => void;
+};
+
+const SwitchSetting = (props: SwitchSettingProps) => {
+  const { name, checked, onChange } = props;
+  return (
+    <Box w="100%" pt={2} pb={1}>
+      <Switch size="md" colorScheme="teal" fontSize={18} isChecked={checked} onChange={onChange}>
+        {name}
+      </Switch>
+    </Box>
   );
 };
 

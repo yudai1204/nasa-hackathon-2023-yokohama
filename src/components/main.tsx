@@ -12,6 +12,7 @@ export const Main = () => {
   const [isMap, setIsMap] = useState(false);
   const [moonquakeData, setMoonquakeData] = useState<MoonquakeData[]>([]);
   const [option, setOption] = useState<Option>({
+    autoRotate: OptionConstants.autoRotate,
     minYear: OptionConstants.minYear,
     maxYear: OptionConstants.maxYear,
   });
