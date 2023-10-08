@@ -15,7 +15,13 @@ import {
 } from "@chakra-ui/react";
 import { AiOutlineClose, AiOutlineMenu, AiFillInfoCircle } from "react-icons/ai";
 
-export const Header = () => {
+type Props = {
+  option: Option;
+  setOption: React.Dispatch<React.SetStateAction<Option>>;
+};
+
+export const Header = (props: Props) => {
+  const { option, setOption } = props;
   const { isOpen, onToggle } = useDisclosure();
   return (
     <Box position="absolute" top={0} left={0} userSelect="none" h="fit-content" w="280px" zIndex={1}>
