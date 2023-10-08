@@ -2,6 +2,7 @@ import { Box, Button } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import { Header } from "./header";
 import { MapComponent } from "./mapLibre";
+import { Panel } from "./panel";
 import { MainCanvas } from "./useThree/mainCanvas";
 import type { MoonquakeData } from "@/type";
 import { fetchArtificialImpactCSV, fetchDeepMoonquakeCSV, fetchShallowMoonquakeCSV } from "@/utils/fetchMoonquakeCSV";
@@ -24,6 +25,7 @@ export const Main = () => {
   return (
     <Box w="100%" h="100vh" position="relative" overflow="none">
       <Header />
+      <Panel />
       {/* 仮の切り替えボタン */}
       <Button
         onClick={() => {
