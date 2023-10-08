@@ -1,7 +1,11 @@
 import maplibregl from "maplibre-gl";
+import { genQuakeSourceData } from "./moonQuake";
+import type { MoonquakeData } from "@/type/moon";
+import { fetchArtificialImpactCSV, fetchDeepMoonquakeCSV, fetchShallowMoonquakeCSV } from "@/utils/fetchMoonquakeCSV";
 
-const minZoom = 3;
+const minZoom = 0;
 const maxZoom = 6;
+const moonQuakeRad = 16;
 
 type Props = {
   container: HTMLElement | null;
@@ -72,6 +76,42 @@ export const mapLibreLogic = (props: Props) => {
   });
 
   map.on("load", async () => {
+    // 月地震データを読み込む
+    const shallowMoonquakes = (await fetchShallowMoonquakeCSV()) as MoonquakeData[];
+    const deepMoonquakes = (await fetchDeepMoonquakeCSV()) as MoonquakeData[];
+    const artificialImpacts = (await fetchArtificialImpactCSV()) as MoonquakeData[];
+
+    map.addSource("shallow-moonquake-source", genQuakeSourceData(shallowMoonquakes));
+    map.addSource("deep-moonquake-source", genQuakeSourceData(deepMoonquakes));
+    map.addSource("artical-moonquake-source", genQuakeSourceData(artificialImpacts));
+    map.addLayer({
+      id: "shallow-moonquake-layer",
+      type: "circle",
+      source: "moonquake-source",
+      paint: {
+        "circle-radius": moonQuakeRad,
+        "circle-color": "#FFA50055",
+      },
+    });
+    map.addLayer({
+      id: "deep-moonquake-layer",
+      type: "circle",
+      source: "deep-moonquake-source",
+      paint: {
+        "circle-radius": moonQuakeRad,
+        "circle-color": "#ee82ee55",
+      },
+    });
+    map.addLayer({
+      id: "artical-moonquake-layer",
+      type: "circle",
+      source: "artical-moonquake-source",
+      paint: {
+        "circle-radius": moonQuakeRad,
+        "circle-color": "#0000FF55",
+      },
+    });
+
     // publicディレクトリ内のGeoJSONファイルを読み込む
     const response = await fetch("/moon_place2en.geojson");
     if (!response.ok) {
