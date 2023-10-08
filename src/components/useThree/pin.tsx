@@ -43,7 +43,7 @@ export const Pin = (props: Props) => {
   return (
     <mesh position={position} onClick={onChoice}>
       <sphereGeometry ref={sphereRef} args={[choiced ? stateRadius : maxSize, 32, 32]} />
-      <meshPhysicalMaterial color={color} transparent={true} opacity={0.4} />
+      <meshPhysicalMaterial color={color} transparent={true} opacity={choiced ? 0.8 : 0.4} />
     </mesh>
   );
 };
