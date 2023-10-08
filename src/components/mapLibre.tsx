@@ -17,7 +17,6 @@ export const MapComponent = (props: Props) => {
       zoom: 4,
       setIsMap,
     };
-
     mapLibreLogic(mapPosition);
   }, [mapContainer, setIsMap]);
 
