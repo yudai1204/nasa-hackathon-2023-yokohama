@@ -45,6 +45,9 @@ export const mapLibreLogic = (props: Props) => {
           id: "test-layer",
           type: "raster",
           source: "test",
+          paint: {
+            "raster-opacity": 0.4,
+          },
         },
       ],
     },
@@ -61,8 +64,35 @@ export const mapLibreLogic = (props: Props) => {
     }
   });
 
-  map.on("click", "points-layer", (e) => {
-    console.log(e);
+  map.on("load", async () => {
+    // publicディレクトリ内のGeoJSONファイルを読み込む
+    const response = await fetch("/moon_place2en.geojson");
+    if (!response.ok) {
+      console.error("Failed to load geojson data");
+      return;
+    }
+    const geojsonData = await response.json();
+
+    // ソースとしてGeoJSONデータを追加
+    map.addSource("geojson-source", {
+      type: "geojson",
+      data: geojsonData,
+    });
+
+    // GeoJSONデータを使用して新しいレイヤーを追加
+    map.addLayer({
+      id: "geojson-points",
+      type: "circle",
+      source: "geojson-source",
+      paint: {
+        "circle-radius": 6,
+        "circle-color": "#B42222",
+      },
+    });
+
+    map.on("click", "geojson-points", (e) => {
+      console.log(e);
+    });
   });
 
   return () => {
