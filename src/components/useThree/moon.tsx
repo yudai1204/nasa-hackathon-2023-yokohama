@@ -7,10 +7,12 @@ import { Option, OptionConstants } from "@/type/option";
 type Props = {
   option: Option;
   moonquakeData: MoonquakeData[];
+  choiceMoonquake: MoonquakeData | null;
+  setChoiceMoonquake: React.Dispatch<React.SetStateAction<MoonquakeData | null>>;
 };
 
 export const Moon = (props: Props) => {
-  const { option, moonquakeData } = props;
+  const { option, moonquakeData, choiceMoonquake, setChoiceMoonquake } = props;
   const radius = 100;
   const moonMap = useLoader(TextureLoader, "moon.webp");
 
@@ -29,7 +31,13 @@ export const Moon = (props: Props) => {
         <meshPhysicalMaterial map={moonMap} />
       </mesh>
       {filteredMoonquakeData.map((moonquake, idx) => (
-        <Pin key={idx} radius={radius} moonquake={moonquake} />
+        <Pin
+          key={idx}
+          radius={radius}
+          moonquake={moonquake}
+          choiceMoonquake={choiceMoonquake}
+          setChoiceMoonquake={setChoiceMoonquake}
+        />
       ))}
     </group>
   );

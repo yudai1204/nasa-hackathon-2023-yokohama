@@ -4,10 +4,15 @@ import { SphereGeometry } from "three";
 import { MoonquakeData, isShallowMoonquake } from "@/type";
 import { convertToCoordinates } from "@/utils/coordinateTransformation";
 
-type Props = { radius: number; moonquake: MoonquakeData };
+type Props = {
+  radius: number;
+  moonquake: MoonquakeData;
+  choiceMoonquake: MoonquakeData | null;
+  setChoiceMoonquake: React.Dispatch<React.SetStateAction<MoonquakeData | null>>;
+};
 
 export const Pin = (props: Props) => {
-  const { radius, moonquake } = props;
+  const { radius, moonquake, choiceMoonquake, setChoiceMoonquake } = props;
   const { latitude, longitude } = moonquake.location;
 
   const sphereRef = useRef<SphereGeometry>(null);
@@ -18,24 +23,27 @@ export const Pin = (props: Props) => {
     return convertToCoordinates(radius, phi, theta);
   }, [latitude, longitude, radius]);
 
+  const onChoice = () => {
+    setChoiceMoonquake(moonquake);
+  };
+  const choiced = choiceMoonquake === moonquake;
   const maxSize = useMemo(() => getMaxSize(moonquake), [moonquake]);
   const color = useMemo(() => getColor(moonquake), [moonquake]);
 
   const [stateRadius, setStateRadius] = useState<number>(maxSize);
-  const [hovered, setHovered] = useState<boolean>(false);
 
   useFrame(() => {
     const sphere = sphereRef.current;
-    if (!sphere || !hovered) return;
-    let next = stateRadius + maxSize * 0.01;
+    if (!sphere || !choiced) return;
+    let next = stateRadius + maxSize * 0.02;
     if (next > maxSize) next = maxSize * 0.3;
     setStateRadius(next);
   });
 
   return (
-    <mesh position={position} onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}>
-      <sphereGeometry ref={sphereRef} args={[hovered ? stateRadius : maxSize, 32, 32]} />
-      <meshPhysicalMaterial color={color} transparent={true} opacity={0.4} />
+    <mesh position={position} onClick={onChoice}>
+      <sphereGeometry ref={sphereRef} args={[choiced ? stateRadius : maxSize, 32, 32]} />
+      <meshPhysicalMaterial color={color} transparent={true} opacity={choiced ? 0.8 : 0.4} />
     </mesh>
   );
 };
