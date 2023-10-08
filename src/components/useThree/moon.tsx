@@ -1,26 +1,16 @@
 import { useLoader } from "@react-three/fiber";
-import { useEffect, useState } from "react";
 import { TextureLoader } from "three";
 import { Pin } from "./pin";
 import { MoonquakeData } from "@/type";
-import { fetchArtificialImpactCSV, fetchDeepMoonquakeCSV, fetchShallowMoonquakeCSV } from "@/utils/fetchMoonquakeCSV";
 
-export const Moon = () => {
+type Props = {
+  moonquakeData: MoonquakeData[];
+};
+
+export const Moon = (props: Props) => {
+  const { moonquakeData } = props;
   const radius = 100;
   const moonMap = useLoader(TextureLoader, "moon.webp");
-
-  const [moonquakeData, setMoonquakeData] = useState<MoonquakeData[]>([]);
-
-  useEffect(() => {
-    const fetchMoonquake = async () => {
-      const shallowMoonquakes = await fetchShallowMoonquakeCSV();
-      const deepMoonquakes = await fetchDeepMoonquakeCSV();
-      const artificialImpacts = await fetchArtificialImpactCSV();
-      const quakes = [...shallowMoonquakes, ...deepMoonquakes, ...artificialImpacts] as MoonquakeData[];
-      setMoonquakeData(quakes);
-    };
-    fetchMoonquake();
-  }, []);
 
   return (
     <group>
