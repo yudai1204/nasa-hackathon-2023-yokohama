@@ -1,7 +1,7 @@
 import { useFrame } from "@react-three/fiber";
 import { useMemo, useRef, useState } from "react";
 import { SphereGeometry } from "three";
-import { MoonquakeData, isArtificialImpact, isDeepMoonquake, isShallowMoonquake } from "@/type";
+import { MoonquakeData, isShallowMoonquake } from "@/type";
 import { convertToCoordinates } from "@/utils/coordinateTransformation";
 
 type Props = { radius: number; moonquake: MoonquakeData };
