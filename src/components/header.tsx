@@ -119,6 +119,7 @@ export const Header = () => {
               Layer Select
             </Text>
           </Box>
+          <Text>©ESO/S. Brunier</Text>
         </VStack>
       </SlideFade>
     </Box>

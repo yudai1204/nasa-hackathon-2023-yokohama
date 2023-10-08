@@ -12,6 +12,7 @@ export interface Location {
 }
 
 export interface Moonquake {
+  type: 0 | 1 | 2;
   time?: Time;
   location: Location;
 }
@@ -36,9 +37,7 @@ export interface ArtificialImpact extends Moonquake {
 }
 
 export type MoonquakeData = ShallowMoonquake | DeepMoonquake | ArtificialImpact;
-export const isShallowMoonquake = (data: MoonquakeData): data is ShallowMoonquake => "magnitude" in data;
-export const isDeepMoonquake = (data: MoonquakeData): data is DeepMoonquake => "A" in data;
-export const isArtificialImpact = (data: MoonquakeData): data is ArtificialImpact => "ai" in data;
+export const isShallowMoonquake = (data: MoonquakeData): data is ShallowMoonquake => data.type === 0;
 
 export type ShallowMoonquakeCSVData = {
   Year: string;

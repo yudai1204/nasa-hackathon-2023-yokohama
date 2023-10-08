@@ -1,0 +1,24 @@
+{
+"type": "FeatureCollection",
+"name": "moon_place1",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "id": null, "name": "東の海: Mare Orientale", "detail": "月の表側の西端にある月の海の一つ", "diameter": "900km" }, "geometry": { "type": "Point", "coordinates": [ -94.502905850358133, -19.711699657810723 ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "嵐の大洋", "detail": "月の海の中で最も広い海。ルナ9号やサーベイヤー1号が着陸した。嵐の大洋西部に世界で初めて地下に通じる穴を発見した。", "diameter": "2568km" }, "geometry": { "type": "Point", "coordinates": [ -60.753059522530172, 29.341495680024927 ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "ラインホルト: Reinhold", "detail": "コペルニクスの南南西に位置する。周りにはReinholdB,  ReinholdCなどのクレーターがある。", "diameter": "43.28" }, "geometry": { "type": "Point", "coordinates": [ -22.67085616297458, 3.411133257110355 ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "コペルニクス: Copernicus", "detail": "8億年前にできた比較的新しいクレーター。赤外線計測によりマグネシウムや鉄を含む石からできているとされている。", "diameter": "96.07km" }, "geometry": { "type": "Point", "coordinates": [ -20.117514734399304, 9.572320718589454 ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "ヨシ: Yoshi", "detail": "日本人男性の名前がつけられた。", "diameter": "0.5km" }, "geometry": { "type": "Point", "coordinates": [ 11.056031267032205, 24.479450547646803 ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "晴れの海: Mare Serenitatis", "detail": "玄武岩に覆われている雨の海の東にある月の海の一つ", "diameter": "707km" }, "geometry": { "type": "Point", "coordinates": [ 18.011565845085638, 26.649926288870873 ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "雨の海: Mare Imbrium", "detail": "嵐の大洋の次に大きい月の海。", "diameter": "1123km" }, "geometry": { "type": "Point", "coordinates": [ -16.940927738128384, 33.757871153307214 ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "ティコ: Tycho", "detail": "1億800万年前にできた新しいクレーター。覆っている地物の影響で", "diameter": "85.3km" }, "geometry": { "type": "Point", "coordinates": [ -11.215483121945397, -43.383042516253532 ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "プラトー: Plato", "detail": "北部に位置するクレーター。この中には直径2キロのクレーターがさらに4つ存在する。", "diameter": "101km" }, "geometry": { "type": "Point", "coordinates": [ -9.19995262865155, 51.672046220147053 ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "スミス海: Mare Smythii", "detail": "月の赤道付近にある月の海の一つ。", "diameter": "373km" }, "geometry": { "type": "Point", "coordinates": [ 86.99689227625845, -1.596487655991307 ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "アリストテレス: Aristoteles", "detail": "月北部にある。アリストテレスの表面はでこぼこした形状をしている。", "diameter": "87.6km" }, "geometry": { "type": "Point", "coordinates": [ 17.31611337397328, 50.223197047985884 ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "エウドクソス: Eudoxus", "detail": "気流が安定している時でないと綺麗な画像が撮れない。", "diameter": "67km" }, "geometry": { "type": "Point", "coordinates": [ 16.354170116908929, 44.20074691398662 ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "静かの海: Mare Tranquillitatis", "detail": "アポロ11号のランダーが着陸した場所。アポロ11号の3人の宇宙飛行士にちなんで付けられたクレーターがある", "diameter": "873km" }, "geometry": { "type": "Point", "coordinates": [ 30.097286602796181, 10.351509485660687 ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "アポロ11号着陸地点: Apollo 11 landing site", "detail": "1969年7月20日　静かの海のラモントの北側に着陸", "diameter": "N/A" }, "geometry": { "type": "Point", "coordinates": [ 23.516640655608615, 0.467000793659253 ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "アームストロング: Armstrong", "detail": "アポロ11号船長、ニール・アームストロングにちなんで付けられた。", "diameter": "4.6km" }, "geometry": { "type": "Point", "coordinates": [ 24.956798660256087, 1.333421895159969 ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "コリンズ: Collins", "detail": "アポロ11号マイケルコリンズにちなんで付けられた。", "diameter": "2.4km" }, "geometry": { "type": "Point", "coordinates": [ 23.722483159305757, 1.275578354037518 ] } },
+{ "type": "Feature", "properties": { "id": null, "name": "オルドリン: Aldrin", "detail": "アポロ11号乗員のバズ・オルドリンにちなんで付けられた。", "diameter": "3.4km" }, "geometry": { "type": "Point", "coordinates": [ 22.10244406430845, 1.391264077029623 ] } }
+]
+}

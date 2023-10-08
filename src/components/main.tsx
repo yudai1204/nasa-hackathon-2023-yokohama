@@ -1,14 +1,31 @@
 import { Box, Button } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Header } from "./header";
 import { MapComponent } from "./mapLibre";
+import { Panel } from "./panel";
 import { MainCanvas } from "./useThree/mainCanvas";
+import type { MoonquakeData } from "@/type";
+import { fetchArtificialImpactCSV, fetchDeepMoonquakeCSV, fetchShallowMoonquakeCSV } from "@/utils/fetchMoonquakeCSV";
 
 export const Main = () => {
   const [isMap, setIsMap] = useState(false);
+  const [moonquakeData, setMoonquakeData] = useState<MoonquakeData[]>([]);
+
+  useEffect(() => {
+    const fetchMoonquake = async () => {
+      const shallowMoonquakes = await fetchShallowMoonquakeCSV();
+      const deepMoonquakes = await fetchDeepMoonquakeCSV();
+      const artificialImpacts = await fetchArtificialImpactCSV();
+      const quakes = [...shallowMoonquakes, ...deepMoonquakes, ...artificialImpacts] as MoonquakeData[];
+      setMoonquakeData(quakes);
+    };
+    fetchMoonquake();
+  }, []);
+
   return (
     <Box w="100%" h="100vh" position="relative" overflow="none">
       <Header />
+      <Panel />
       {/* 仮の切り替えボタン */}
       <Button
         onClick={() => {
@@ -21,7 +38,13 @@ export const Main = () => {
       >
         {isMap ? "toThree" : "toMap"}
       </Button>
-      {isMap ? <MapComponent setIsMap={setIsMap} /> : <MainCanvas />}
+
+      <Box w="100%" h="100%" position="absolute" top={0} left={0} zIndex={isMap ? 0 : -1}>
+        <MapComponent setIsMap={setIsMap} />
+      </Box>
+      <Box w="100%" h="100%" position="absolute" top={0} left={0} zIndex={isMap ? -1 : 0}>
+        <MainCanvas setIsMap={setIsMap} moonquakeData={moonquakeData} />
+      </Box>
     </Box>
   );
 };
