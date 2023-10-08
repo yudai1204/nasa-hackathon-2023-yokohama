@@ -53,6 +53,7 @@ export const Main = () => {
           setIsMap={setIsMap}
           moonquakeData={moonquakeData}
           option={option}
+          choiceMoonquake={choiceMoonquake}
           setChoiceMoonquake={setChoiceMoonquake}
         />
       </Box>
