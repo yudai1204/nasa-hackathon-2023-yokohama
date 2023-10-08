@@ -27,7 +27,7 @@ export const Pin = (props: Props) => {
   useFrame(() => {
     const sphere = sphereRef.current;
     if (!sphere || !hovered) return;
-    let next = stateRadius + 0.1;
+    let next = stateRadius + maxSize * 0.01;
     if (next > maxSize) next = maxSize * 0.3;
     setStateRadius(next);
   });
