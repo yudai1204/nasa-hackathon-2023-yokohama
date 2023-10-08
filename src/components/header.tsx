@@ -82,6 +82,7 @@ export const Header = () => {
               <SliderThumb />
             </Slider>
           </Box>
+          <Text>©ESO/S. Brunier</Text>
         </VStack>
       </SlideFade>
     </Box>
