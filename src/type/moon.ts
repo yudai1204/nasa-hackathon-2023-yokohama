@@ -11,8 +11,10 @@ export interface Location {
   longitude: number;
 }
 
+export type MoonquakeType = 0 | 1 | 2;
+
 export interface Moonquake {
-  type: 0 | 1 | 2;
+  type: MoonquakeType;
   time?: Time;
   location: Location;
 }

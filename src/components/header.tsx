@@ -21,6 +21,7 @@ import {
   RangeSliderThumb,
 } from "@chakra-ui/react";
 import { AiOutlineClose, AiOutlineMenu, AiFillInfoCircle } from "react-icons/ai";
+import { MoonquakeType } from "@/type/moon";
 import { Option, OptionConstants } from "@/type/option";
 
 type Props = {
@@ -69,30 +70,7 @@ export const Header = (props: Props) => {
             <Divider position="absolute" top="60px" left="0px" borderColor="gray.600" zIndex={6} />
           </Box>
           <VStack bgColor="gray.300" h="100vh" pt="72px" px="26px" gap={2} color="gray.600" overflowY="scroll">
-            <Box w="100%">
-              <Text fontSize={24} fontWeight="medium">
-                Filter
-              </Text>
-              <Text fontSize={12}>
-                <Icon as={AiFillInfoCircle} fontSize={12} mr="8px" />
-                Click to filter.
-              </Text>
-              <Box w="100%" pt={3} pb={1}>
-                <Checkbox size="lg" colorScheme="teal" defaultChecked>
-                  Shallow
-                </Checkbox>
-              </Box>
-              <Box w="100%" pb={1}>
-                <Checkbox size="lg" colorScheme="teal" defaultChecked>
-                  Deep
-                </Checkbox>
-              </Box>
-              <Box w="100%">
-                <Checkbox size="lg" colorScheme="teal" defaultChecked>
-                  Artifical
-                </Checkbox>
-              </Box>
-            </Box>
+            <TypeFilterSetting option={option} setOption={setOption} />
             <Divider borderColor="gray.600" pt={4} />
             <Box w="100%">
               <Text fontSize={24} fontWeight="medium" pt={2}>
@@ -234,6 +212,52 @@ const YearSlider = (props: YearSliderProps) => {
         <RangeSliderThumb index={0} />
         <RangeSliderThumb index={1} />
       </RangeSlider>
+    </Box>
+  );
+};
+
+type TypeFilterSettingProps = {
+  option: Option;
+  setOption: React.Dispatch<React.SetStateAction<Option>>;
+};
+
+const TypeFilterSetting = (props: TypeFilterSettingProps) => {
+  const { option, setOption } = props;
+
+  const changetypeFilter = (type: MoonquakeType) => {
+    const typeFilter = option.typeFilter;
+    if (typeFilter.has(type)) {
+      typeFilter.delete(type);
+    } else {
+      typeFilter.add(type);
+    }
+    setOption({ ...option, typeFilter: typeFilter });
+  };
+
+  return (
+    <Box w="100%">
+      <Text fontSize={24} fontWeight="medium">
+        Filter
+      </Text>
+      <Text fontSize={12}>
+        <Icon as={AiFillInfoCircle} fontSize={12} mr="8px" />
+        Click to filter.
+      </Text>
+      <Box w="100%" pt={3} pb={1}>
+        <Checkbox size="lg" colorScheme="teal" onChange={() => changetypeFilter(0)} defaultChecked>
+          Shallow
+        </Checkbox>
+      </Box>
+      <Box w="100%" pb={1}>
+        <Checkbox size="lg" colorScheme="teal" onChange={() => changetypeFilter(1)} defaultChecked>
+          Deep
+        </Checkbox>
+      </Box>
+      <Box w="100%">
+        <Checkbox size="lg" colorScheme="teal" onChange={() => changetypeFilter(2)} defaultChecked>
+          Artifical
+        </Checkbox>
+      </Box>
     </Box>
   );
 };
