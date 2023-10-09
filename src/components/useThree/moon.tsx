@@ -20,11 +20,13 @@ export const Moon = (props: Props) => {
 
   const { minYear, maxYear } = option;
   const isAll = minYear === OptionConstants.minYear && maxYear === OptionConstants.maxYear;
-  const filteredMoonquakeData = moonquakeData.filter((moonquake) => {
-    if (isAll) return true;
-    const year = moonquake.time?.year ?? 0;
-    return year >= minYear && year <= maxYear;
-  });
+  const filteredMoonquakeData = moonquakeData
+    .filter((moonquake) => {
+      if (isAll) return true;
+      const year = moonquake.time?.year ?? 0;
+      return year >= minYear && year <= maxYear;
+    })
+    .filter((moonquake) => option.viewType.includes(moonquake.type));
 
   useFrame(() => {
     const moon = moonRef.current;
