@@ -225,11 +225,11 @@ const FilterSetting = (props: FilterSettingProps) => {
   const { option, setOption } = props;
 
   const changeView = (type: MoonquakeType) => {
-    let viewType = option.viewType;
-    if (viewType.includes(type)) {
-      viewType = viewType.filter((e) => e != type);
+    const viewType = option.viewType;
+    if (viewType.has(type)) {
+      viewType.delete(type);
     } else {
-      viewType.push(type);
+      viewType.add(type);
     }
     setOption({ ...option, viewType: viewType });
   };
