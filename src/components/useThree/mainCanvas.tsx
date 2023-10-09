@@ -28,7 +28,7 @@ export const MainCanvas = (props: Props) => {
     >
       <directionalLight position={[1, 1, 1]} intensity={0.8} />
       <ambientLight args={[0xffffff]} intensity={0.5} />
-      <OrbitControls minDistance={250} maxDistance={500} enablePan={false}/>
+      <OrbitControls minDistance={250} maxDistance={500} enablePan={false} />
       <Moon
         option={option}
         moonquakeData={moonquakeData}
