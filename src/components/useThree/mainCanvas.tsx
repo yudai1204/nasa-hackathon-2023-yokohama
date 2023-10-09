@@ -20,6 +20,14 @@ export const MainCanvas = (props: Props) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const orbitControlsRef = useRef<any>(null);
 
+  const handleOrbitControlsChange = () => {
+    const orbitControls = orbitControlsRef.current;
+    if (!orbitControls) return;
+    if (orbitControls.getDistance() === orbitControls.minDistance) {
+      setIsMap(true);
+    }
+  };
+
   return (
     <Canvas
       camera={{
@@ -37,13 +45,7 @@ export const MainCanvas = (props: Props) => {
         minDistance={150}
         maxDistance={500}
         enablePan={false}
-        onChange={() => {
-          const orbitControls = orbitControlsRef.current;
-          if (!orbitControls) return;
-          if (orbitControls.getDistance() == orbitControls.minDistance) {
-            setIsMap(true);
-          }
-        }}
+        onChange={handleOrbitControlsChange}
       />
       <Moon
         option={option}
