@@ -15,7 +15,7 @@ export const Main = () => {
     autoRotate: OptionConstants.autoRotate,
     minYear: OptionConstants.minYear,
     maxYear: OptionConstants.maxYear,
-    viewType: OptionConstants.viewType,
+    typeFilter: OptionConstants.typeFilter,
   });
   const [choiceMoonquake, setChoiceMoonquake] = useState<MoonquakeData | null>(null);
 

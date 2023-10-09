@@ -70,7 +70,7 @@ export const Header = (props: Props) => {
             <Divider position="absolute" top="60px" left="0px" borderColor="gray.600" zIndex={6} />
           </Box>
           <VStack bgColor="gray.300" h="100vh" pt="72px" px="26px" gap={2} color="gray.600" overflowY="scroll">
-            <FilterSetting option={option} setOption={setOption} />
+            <TypeFilterSetting option={option} setOption={setOption} />
             <Divider borderColor="gray.600" pt={4} />
             <Box w="100%">
               <Text fontSize={24} fontWeight="medium" pt={2}>
@@ -216,22 +216,22 @@ const YearSlider = (props: YearSliderProps) => {
   );
 };
 
-type FilterSettingProps = {
+type TypeFilterSettingProps = {
   option: Option;
   setOption: React.Dispatch<React.SetStateAction<Option>>;
 };
 
-const FilterSetting = (props: FilterSettingProps) => {
+const TypeFilterSetting = (props: TypeFilterSettingProps) => {
   const { option, setOption } = props;
 
-  const changeView = (type: MoonquakeType) => {
-    const viewType = option.viewType;
-    if (viewType.has(type)) {
-      viewType.delete(type);
+  const changetypeFilter = (type: MoonquakeType) => {
+    const typeFilter = option.typeFilter;
+    if (typeFilter.has(type)) {
+      typeFilter.delete(type);
     } else {
-      viewType.add(type);
+      typeFilter.add(type);
     }
-    setOption({ ...option, viewType: viewType });
+    setOption({ ...option, typeFilter: typeFilter });
   };
 
   return (
@@ -244,17 +244,17 @@ const FilterSetting = (props: FilterSettingProps) => {
         Click to filter.
       </Text>
       <Box w="100%" pt={3} pb={1}>
-        <Checkbox size="lg" colorScheme="teal" onChange={() => changeView(0)} defaultChecked>
+        <Checkbox size="lg" colorScheme="teal" onChange={() => changetypeFilter(0)} defaultChecked>
           Shallow
         </Checkbox>
       </Box>
       <Box w="100%" pb={1}>
-        <Checkbox size="lg" colorScheme="teal" onChange={() => changeView(1)} defaultChecked>
+        <Checkbox size="lg" colorScheme="teal" onChange={() => changetypeFilter(1)} defaultChecked>
           Deep
         </Checkbox>
       </Box>
       <Box w="100%">
-        <Checkbox size="lg" colorScheme="teal" onChange={() => changeView(2)} defaultChecked>
+        <Checkbox size="lg" colorScheme="teal" onChange={() => changetypeFilter(2)} defaultChecked>
           Artifical
         </Checkbox>
       </Box>

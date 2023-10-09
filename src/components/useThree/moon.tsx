@@ -26,7 +26,7 @@ export const Moon = (props: Props) => {
       const year = moonquake.time?.year ?? 0;
       return year >= minYear && year <= maxYear;
     })
-    .filter((moonquake) => option.viewType.has(moonquake.type));
+    .filter((moonquake) => option.typeFilter.has(moonquake.type));
 
   useFrame(() => {
     const moon = moonRef.current;
