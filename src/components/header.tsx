@@ -67,7 +67,16 @@ export const Header = (props: Props) => {
           <Box position="absolute" top="0px" left="0px" w="100%" h="60px" bgColor="gray.300" zIndex={5}>
             <Divider position="absolute" top="60px" left="0px" borderColor="gray.600" zIndex={6} />
           </Box>
-          <VStack bgColor="gray.300" h="100svh" pt="72px" px="26px" gap={2} color="gray.600" overflowY="scroll">
+          <VStack
+            bgColor="gray.300"
+            h="calc(100svh - 60px)"
+            mt="60px"
+            pt="72px"
+            px="26px"
+            gap={2}
+            color="gray.600"
+            overflowY="scroll"
+          >
             <TypeFilterSetting option={option} setOption={setOption} />
             <Divider borderColor="gray.600" pt={4} />
             <VStack w="100%" gap={1}>
