@@ -1,6 +1,7 @@
 import { Box, Button } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import { Header } from "./header";
+import { LoadingBox } from "./loadingBox";
 import { MapComponent } from "./mapLibre";
 import { Panel } from "./panel";
 import { MainCanvas } from "./useThree/mainCanvas";
@@ -16,16 +17,20 @@ export const Main = () => {
     minYear: OptionConstants.minYear,
     maxYear: OptionConstants.maxYear,
     typeFilter: OptionConstants.typeFilter,
+    performanceMode: OptionConstants.performanceMode,
   });
+  const [loadingPageStep, setLoadingPageStep] = useState(0);
   const [choiceMoonquake, setChoiceMoonquake] = useState<MoonquakeData | null>(null);
 
   useEffect(() => {
+    setLoadingPageStep(1);
     const fetchMoonquake = async () => {
       const shallowMoonquakes = await fetchShallowMoonquakeCSV();
       const deepMoonquakes = await fetchDeepMoonquakeCSV();
       const artificialImpacts = await fetchArtificialImpactCSV();
       const quakes = [...shallowMoonquakes, ...deepMoonquakes, ...artificialImpacts] as MoonquakeData[];
       setMoonquakeData(quakes);
+      setLoadingPageStep(2);
     };
     fetchMoonquake();
   }, []);
@@ -42,23 +47,30 @@ export const Main = () => {
         position={"absolute"}
         bottom={10}
         right={10}
-        zIndex={100}
+        zIndex={1}
       >
-        {isMap ? "toThree" : "toMap"}
+        {isMap ? "to 3D" : "to Map"}
       </Button>
 
-      <Box w="100%" h="100%" position="absolute" top={0} left={0} zIndex={isMap ? 0 : -1}>
-        <MapComponent setIsMap={setIsMap} setChoiceMoonquake={setChoiceMoonquake} />
-      </Box>
-      <Box w="100%" h="100%" position="absolute" top={0} left={0} zIndex={isMap ? -1 : 0}>
-        <MainCanvas
-          setIsMap={setIsMap}
-          moonquakeData={moonquakeData}
-          option={option}
-          choiceMoonquake={choiceMoonquake}
-          setChoiceMoonquake={setChoiceMoonquake}
-        />
-      </Box>
+      <LoadingBox loadingPageStep={loadingPageStep} />
+
+      {(isMap || !option.performanceMode) && (
+        <Box w="100%" h="100%" position="absolute" top={0} left={0} zIndex={isMap ? 0 : -1}>
+          <MapComponent setIsMap={setIsMap} setChoiceMoonquake={setChoiceMoonquake} />
+        </Box>
+      )}
+
+      {(!isMap || !option.performanceMode) && (
+        <Box w="100%" h="100%" position="absolute" top={0} left={0} zIndex={isMap ? -1 : 0}>
+          <MainCanvas
+            setIsMap={setIsMap}
+            moonquakeData={moonquakeData}
+            option={option}
+            choiceMoonquake={choiceMoonquake}
+            setChoiceMoonquake={setChoiceMoonquake}
+          />
+        </Box>
+      )}
     </Box>
   );
 };
