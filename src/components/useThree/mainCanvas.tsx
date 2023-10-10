@@ -6,6 +6,7 @@ import { Moon } from "./moon";
 import { Universe } from "./universe";
 import type { MoonquakeData } from "@/type";
 import { Option } from "@/type/option";
+import { useWideHeader } from "@/utils/useWideHeader";
 
 type Props = {
   moonquakeData: MoonquakeData[];
@@ -27,6 +28,8 @@ export const MainCanvas = (props: Props) => {
     }
   };
 
+  const wideHeader = useWideHeader();
+
   return (
     <Canvas
       camera={{
@@ -41,7 +44,7 @@ export const MainCanvas = (props: Props) => {
       <ambientLight args={[0xffffff]} intensity={0.5} />
       <OrbitControls
         ref={orbitControlsRef}
-        minDistance={150}
+        minDistance={wideHeader ? 150 : 250}
         maxDistance={500}
         enablePan={false}
         onChange={handleOrbitControlsChange}

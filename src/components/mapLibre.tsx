@@ -16,7 +16,7 @@ export const MapComponent = (props: Props) => {
       container: mapContainer.current,
       latitude: 0,
       longitude: 0,
-      zoom: 4,
+      zoom: 1,
       setIsMap,
       setChoiceMoonquake,
     };

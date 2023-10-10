@@ -4,7 +4,7 @@ import type { MoonquakeData } from "@/type/moon";
 import { fetchArtificialImpactCSV, fetchDeepMoonquakeCSV, fetchShallowMoonquakeCSV } from "@/utils/fetchMoonquakeCSV";
 
 const minZoom = 3;
-const maxZoom = 6;
+const maxZoom = 8;
 const moonQuakeRad = 16;
 
 type Props = {
