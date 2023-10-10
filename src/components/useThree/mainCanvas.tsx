@@ -15,7 +15,6 @@ type Props = {
   setChoiceMoonquake: React.Dispatch<React.SetStateAction<MoonquakeData | null>>;
 };
 export const MainCanvas = (props: Props) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { moonquakeData, setIsMap, option, choiceMoonquake, setChoiceMoonquake } = props;
 
   const orbitControlsRef = useRef<OrbitControlsImpl>(null);
