@@ -17,6 +17,7 @@ import {
 } from "@chakra-ui/react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { SwitchSetting, TypeFilterSetting, YearSlider } from "@/components/useHeader";
+import { Footer } from "@/components/useHeader/footer";
 import { Option } from "@/type/option";
 
 type Props = {
@@ -155,9 +156,7 @@ export const Header = (props: Props) => {
             </Box>
             <Divider borderColor="gray.600" pt={2} />
             <YearSlider option={option} setOption={setOption} />
-            <Text pt={6} pb={4}>
-              ©ESO/S. Brunier
-            </Text>
+            <Footer />
           </VStack>
         </SlideFade>
       </Box>
