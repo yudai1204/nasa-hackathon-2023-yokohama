@@ -71,7 +71,7 @@ export const Header = (props: Props) => {
             bgColor="gray.300"
             h="calc(100svh - 60px)"
             mt="60px"
-            pt="72px"
+            pt="12px"
             px="26px"
             gap={2}
             color="gray.600"
