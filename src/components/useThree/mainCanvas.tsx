@@ -23,7 +23,7 @@ export const MainCanvas = (props: Props) => {
   const handleOrbitControlsChange = () => {
     const orbitControls = orbitControlsRef.current;
     if (!orbitControls) return;
-    if (orbitControls.getDistance() === orbitControls.minDistance) {
+    if (orbitControls.getDistance() <= orbitControls.minDistance) {
       setIsMap(true);
     }
   };
