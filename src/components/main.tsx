@@ -1,4 +1,4 @@
-import { Box, Button } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import { Header } from "./header";
 import { LoadingBox } from "./loadingBox";
@@ -36,21 +36,9 @@ export const Main = () => {
   }, []);
 
   return (
-    <Box w="100%" h="100vh" position="relative" overflow="none">
+    <Box w="100%" h="100svh" position="relative" overflow="none">
       <Header option={option} setOption={setOption} />
       <Panel choiceMoonquake={choiceMoonquake} />
-      {/* 仮の切り替えボタン */}
-      <Button
-        onClick={() => {
-          setIsMap(!isMap);
-        }}
-        position={"absolute"}
-        bottom={10}
-        right={10}
-        zIndex={1}
-      >
-        {isMap ? "to 3D" : "to Map"}
-      </Button>
 
       <LoadingBox loadingPageStep={loadingPageStep} />
 
