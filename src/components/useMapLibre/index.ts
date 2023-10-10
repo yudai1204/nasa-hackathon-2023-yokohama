@@ -22,8 +22,6 @@ export const mapLibreLogic = (props: Props) => {
     container,
     zoom,
     dragRotate: false,
-    //dragPan: false,
-    touchZoomRotate: false,
     minPitch: 0,
     pitchWithRotate: false,
     renderWorldCopies: false,
@@ -66,6 +64,8 @@ export const mapLibreLogic = (props: Props) => {
     minZoom,
     maxZoom,
   });
+
+  map.touchZoomRotate.disableRotation();
 
   map.on("zoom", () => {
     // console.log(map.getZoom());
