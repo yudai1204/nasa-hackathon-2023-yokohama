@@ -71,7 +71,7 @@ export const Header = (props: Props) => {
             <TypeFilterSetting option={option} setOption={setOption} />
             <Divider borderColor="gray.600" pt={4} />
             <VStack w="100%" gap={1}>
-              <Text fontSize={24} fontWeight="medium" pt={2}>
+              <Text fontSize={24} fontWeight="medium" pt={2} w="100%">
                 Settings
               </Text>
               <SwitchSetting
