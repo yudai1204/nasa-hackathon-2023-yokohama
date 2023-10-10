@@ -1,6 +1,7 @@
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useRef } from "react";
+import { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import { Moon } from "./moon";
 import { Universe } from "./universe";
 import type { MoonquakeData } from "@/type";
@@ -17,8 +18,7 @@ export const MainCanvas = (props: Props) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { moonquakeData, setIsMap, option, choiceMoonquake, setChoiceMoonquake } = props;
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const orbitControlsRef = useRef<any>(null);
+  const orbitControlsRef = useRef<OrbitControlsImpl>(null);
 
   const handleOrbitControlsChange = () => {
     const orbitControls = orbitControlsRef.current;
