@@ -1,7 +1,9 @@
 import maplibregl from "maplibre-gl";
 import { genQuakeSourceData } from "./moonQuake";
 import type { MoonquakeData } from "@/type/moon";
+import { Option } from "@/type/option";
 import { fetchArtificialImpactCSV, fetchDeepMoonquakeCSV, fetchShallowMoonquakeCSV } from "@/utils/fetchMoonquakeCSV";
+import { moonQuakeFilter } from "@/utils/moonquakeFilter";
 
 const minZoom = 3;
 const maxZoom = 6;
@@ -14,9 +16,10 @@ type Props = {
   zoom: number;
   setIsMap: React.Dispatch<React.SetStateAction<boolean>>;
   setChoiceMoonquake: React.Dispatch<React.SetStateAction<MoonquakeData | null>>;
+  option: Option;
 };
 export const mapLibreLogic = (props: Props) => {
-  const { container, latitude, longitude, zoom, setIsMap, setChoiceMoonquake } = props;
+  const { container, latitude, longitude, zoom, setIsMap, setChoiceMoonquake, option } = props;
   if (container === null) return;
   const map = new maplibregl.Map({
     container,
@@ -78,9 +81,9 @@ export const mapLibreLogic = (props: Props) => {
 
   map.on("load", async () => {
     // 月地震データを読み込む
-    const shallowMoonquakes = (await fetchShallowMoonquakeCSV()) as MoonquakeData[];
-    const deepMoonquakes = (await fetchDeepMoonquakeCSV()) as MoonquakeData[];
-    const artificialImpacts = (await fetchArtificialImpactCSV()) as MoonquakeData[];
+    const shallowMoonquakes = moonQuakeFilter(await fetchShallowMoonquakeCSV(), option);
+    const deepMoonquakes = moonQuakeFilter(await fetchDeepMoonquakeCSV(), option);
+    const artificialImpacts = moonQuakeFilter(await fetchArtificialImpactCSV(), option);
 
     map.addSource("shallow-moonquake-source", genQuakeSourceData(shallowMoonquakes));
     map.addSource("deep-moonquake-source", genQuakeSourceData(deepMoonquakes));

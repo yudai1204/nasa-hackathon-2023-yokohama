@@ -3,7 +3,8 @@ import React from "react";
 import { Group, TextureLoader } from "three";
 import { Pin } from "./pin";
 import { MoonquakeData } from "@/type";
-import { Option, OptionConstants } from "@/type/option";
+import { Option } from "@/type/option";
+import { moonQuakeFilter } from "@/utils/moonquakeFilter";
 
 type Props = {
   option: Option;
@@ -18,15 +19,7 @@ export const Moon = (props: Props) => {
   const radius = 100;
   const moonMap = useLoader(TextureLoader, "moon.webp");
 
-  const { minYear, maxYear } = option;
-  const isAll = minYear === OptionConstants.minYear && maxYear === OptionConstants.maxYear;
-  const filteredMoonquakeData = moonquakeData
-    .filter((moonquake) => {
-      if (isAll) return true;
-      const year = moonquake.time?.year ?? 0;
-      return year >= minYear && year <= maxYear;
-    })
-    .filter((moonquake) => option.typeFilter.has(moonquake.type));
+  const filteredMoonquakeData = moonQuakeFilter(moonquakeData, option);
 
   useFrame(() => {
     const moon = moonRef.current;

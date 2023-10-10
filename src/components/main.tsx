@@ -48,7 +48,7 @@ export const Main = () => {
       </Button>
 
       <Box w="100%" h="100%" position="absolute" top={0} left={0} zIndex={isMap ? 0 : -1}>
-        <MapComponent setIsMap={setIsMap} setChoiceMoonquake={setChoiceMoonquake} />
+        <MapComponent setIsMap={setIsMap} setChoiceMoonquake={setChoiceMoonquake} option={option} />
       </Box>
       <Box w="100%" h="100%" position="absolute" top={0} left={0} zIndex={isMap ? -1 : 0}>
         <MainCanvas
