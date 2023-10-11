@@ -16,7 +16,7 @@ import {
   RadioGroup,
 } from "@chakra-ui/react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import { SwitchSetting, TypeFilterSetting, YearSlider } from "@/components/useHeader";
+import { SwitchSetting, TypeFilterSetting } from "@/components/useHeader";
 import { Footer } from "@/components/useHeader/footer";
 import { Option } from "@/type/option";
 
@@ -163,8 +163,6 @@ export const Header = (props: Props) => {
                 </Stack>
               </RadioGroup>
             </Box>
-            <Divider borderColor="gray.600" pt={2} />
-            <YearSlider option={option} setOption={setOption} />
             <Footer />
           </VStack>
         </SlideFade>
