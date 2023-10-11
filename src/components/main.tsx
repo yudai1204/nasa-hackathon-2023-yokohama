@@ -43,11 +43,12 @@ export const Main = () => {
     <Box w="100%" h="100svh" position="relative" overflow="none">
       <Header option={option} setOption={setOption} />
       <Panel choiceMoonquake={choiceMoonquake} />
-      {!isMap && option.playInfo.status === "stop" ? (
-        <YearSlider option={option} setOption={setOption} />
-      ) : (
-        <Play option={option} setOption={setOption} />
-      )}
+      {!isMap &&
+        (option.playInfo.status === "stop" ? (
+          <YearSlider option={option} setOption={setOption} />
+        ) : (
+          <Play option={option} setOption={setOption} />
+        ))}
 
       <LoadingBox loadingPageStep={loadingPageStep} />
 
