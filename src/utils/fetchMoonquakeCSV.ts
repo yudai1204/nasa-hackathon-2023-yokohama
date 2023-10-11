@@ -46,7 +46,7 @@ export const fetchShallowMoonquakeCSV = (): Promise<ShallowMoonquake[]> => {
 
 export const fetchDeepMoonquakeCSV = (): Promise<DeepMoonquake[]> => {
   return csvDataFetch(
-    "https://pds-geosciences.wustl.edu/lunar/urn-nasa-pds-apollo_seismic_event_catalog/data/nakamura_2005_dm_locations.csv ",
+    "https://pds-geosciences.wustl.edu/lunar/urn-nasa-pds-apollo_seismic_event_catalog/data/nakamura_2005_dm_locations.csv",
   )
     .then((res) => {
       return res
