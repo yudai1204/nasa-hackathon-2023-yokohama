@@ -40,7 +40,7 @@ export const Main = () => {
     <Box w="100%" h="100svh" position="relative" overflow="none">
       <Header option={option} setOption={setOption} />
       <Panel choiceMoonquake={choiceMoonquake} />
-      {isMap || <YearSlider option={option} setOption={setOption} />}
+      {!isMap && <YearSlider option={option} setOption={setOption} />}
 
       <LoadingBox loadingPageStep={loadingPageStep} />
 
