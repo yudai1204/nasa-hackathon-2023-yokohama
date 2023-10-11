@@ -4,42 +4,43 @@ import { MdDragIndicator } from "react-icons/md";
 import { MoonquakeData, isArtificialImpact, isDeepMoonquake, isShallowMoonquake } from "@/type";
 
 type Data = {
-  year: number | "N/A";
-  latitude: number | "N/A";
-  longitude: number | "N/A";
-  type: string;
-  addDataKey: string;
-  addDataValue: number | string | "N/A";
-};
-
-const nullData: Data = {
-  year: "N/A",
-  latitude: "N/A",
-  longitude: "N/A",
-  type: "N/A",
-  addDataKey: "N/A",
-  addDataValue: "N/A",
+  year?: number;
+  latitude?: number;
+  longitude?: number;
+  type?: string;
+  addDataKey?: string;
+  addDataValue?: number | string;
 };
 
 const convertToData = (moonquake: MoonquakeData | null): Data => {
-  if (!moonquake) {
-    return nullData;
-  }
+  if (!moonquake) return {};
+
   const { time, location } = moonquake;
-  const year = time?.year ?? "N/A";
-  const latitude = location.latitude ?? "N/A";
-  const longitude = location.longitude ?? "N/A";
-  const { type, addDataKey, addDataValue } = (() => {
-    if (isShallowMoonquake(moonquake)) {
-      return { type: "Shallow Moonquake", addDataKey: "magnitude", addDataValue: moonquake.magnitude };
-    } else if (isDeepMoonquake(moonquake)) {
-      return { type: "Deep Moonquake", addDataKey: "depth", addDataValue: moonquake.depth };
-    } else if (isArtificialImpact(moonquake)) {
-      return { type: "Artifical Impact", addDataKey: "AI", addDataValue: moonquake.ai };
-    }
-    return { type: "N/A", addDataKey: "N/A", addDataValue: "N/A" };
+  const year = time?.year;
+  const latitude = location.latitude;
+  const longitude = location.longitude;
+  const type = ["Shallow Moonquake", "Deep Moonquake", "Artificial Impact"][moonquake.type];
+  const addDataKey = ["magnitude", "depth", "AI"][moonquake.type];
+  const addDataValue = (() => {
+    if (isShallowMoonquake(moonquake)) return moonquake.magnitude;
+    if (isDeepMoonquake(moonquake)) return moonquake.depth;
+    if (isArtificialImpact(moonquake)) return moonquake.ai;
+    return undefined;
   })();
   return { year, latitude, longitude, type, addDataKey, addDataValue };
+};
+
+type DisplayDataItemProps = {
+  label?: string;
+  value?: number | string;
+};
+const DisplayDataItem = (props: DisplayDataItemProps) => {
+  const { label, value } = props;
+  return (
+    <Text fontSize="16px" height="40px" lineHeight="40px" borderTop="1px solid" borderColor="#B0BAC640" w="100%">
+      {label ?? "N/A"}: {value ?? "N/A"}
+    </Text>
+  );
 };
 
 type Props = {
@@ -50,13 +51,6 @@ export const Panel = (props: Props) => {
   const [isOpen, setIsOpnen] = useState(true);
 
   const data = convertToData(props.choiceMoonquake);
-  const dataText = (key: string, value: number | string | "N/A") => {
-    return (
-      <Text fontSize="16px" height="40px" lineHeight="40px" borderTop="1px solid" borderColor="#B0BAC640" w="100%">
-        {key}: {value}
-      </Text>
-    );
-  };
 
   return (
     <Box
@@ -97,11 +91,11 @@ export const Panel = (props: Props) => {
         />
 
         <VStack spacing={0} align="flex-start" opacity={isOpen ? 1 : 0} transition="0.3s">
-          {dataText("Year", data.year)}
-          {dataText("Latitude", data.latitude)}
-          {dataText("Longitude", data.longitude)}
-          {dataText("Type", data.type)}
-          {dataText(data.addDataKey, data.addDataValue)}
+          <DisplayDataItem label="Year" value={data.year} />
+          <DisplayDataItem label="Latitude" value={data.latitude} />
+          <DisplayDataItem label="Longitude" value={data.longitude} />
+          <DisplayDataItem label="Type" value={data.type} />
+          <DisplayDataItem label={data.addDataKey} value={data.addDataValue} />
         </VStack>
       </Box>
     </Box>
