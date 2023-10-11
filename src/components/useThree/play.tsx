@@ -43,33 +43,15 @@ export const Play = (props: Props) => {
         py="8px"
       >
         {option.playInfo.status === "play" ? (
-          <Button
-            color="white"
-            bg="gray.900"
-            _hover={{ bg: "gray.800" }}
-            borderRadius="20px"
-            onClick={() => changePlayInfo("pause")}
-          >
+          <Button color="white" bg="gray.900" _hover={{ bg: "gray.800" }} onClick={() => changePlayInfo("pause")}>
             <Icon as={AiFillPauseCircle} />
           </Button>
         ) : (
-          <Button
-            color="white"
-            bg="gray.900"
-            _hover={{ bg: "gray.800" }}
-            borderRadius="20px"
-            onClick={() => changePlayInfo("play")}
-          >
+          <Button color="white" bg="gray.900" _hover={{ bg: "gray.800" }} onClick={() => changePlayInfo("play")}>
             <Icon as={AiFillPlayCircle} />
           </Button>
         )}
-        <Button
-          color="white"
-          bg="gray.900"
-          _hover={{ bg: "gray.800" }}
-          borderRadius="20px"
-          onClick={() => changePlayInfo("stop")}
-        >
+        <Button color="white" bg="gray.900" _hover={{ bg: "gray.800" }} onClick={() => changePlayInfo("stop")}>
           <Icon as={AiFillStop} />
         </Button>{" "}
         <Slider

@@ -37,7 +37,6 @@ export const YearSlider = (props: Props) => {
           color="white"
           bg="gray.900"
           _hover={{ bg: "gray.800" }}
-          borderRadius="20px"
           onClick={() => setOption({ ...option, playInfo: { ...option.playInfo, status: "pause" } })}
         >
           <Icon as={AiFillClockCircle} />
