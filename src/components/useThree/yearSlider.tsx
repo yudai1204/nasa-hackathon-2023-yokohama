@@ -1,5 +1,15 @@
-import { Text, Flex, RangeSlider, RangeSliderFilledTrack, RangeSliderTrack, RangeSliderThumb } from "@chakra-ui/react";
+import {
+  Text,
+  Flex,
+  RangeSlider,
+  RangeSliderFilledTrack,
+  RangeSliderTrack,
+  RangeSliderThumb,
+  Button,
+  Icon,
+} from "@chakra-ui/react";
 import React from "react";
+import { AiFillClockCircle } from "react-icons/ai";
 import { Option, OptionConstants } from "@/type/option";
 
 type Props = {
@@ -23,6 +33,15 @@ export const YearSlider = (props: Props) => {
         px="20px"
         py="8px"
       >
+        <Button
+          color="white"
+          bg="gray.900"
+          _hover={{ bg: "gray.800" }}
+          borderRadius="20px"
+          onClick={() => setOption({ ...option, playInfo: { ...option.playInfo, status: "pause" } })}
+        >
+          <Icon as={AiFillClockCircle} />
+        </Button>
         <Text fontSize="16px" color="white">
           {option.minYear}
         </Text>

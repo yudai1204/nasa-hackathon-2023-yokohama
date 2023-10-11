@@ -4,8 +4,8 @@ import { Header } from "./header";
 import { LoadingBox } from "./loadingBox";
 import { MapComponent } from "./mapLibre";
 import { Panel } from "./panel";
-import { Play } from "./play";
 import { MainCanvas } from "./useThree/mainCanvas";
+import { Play } from "./useThree/play";
 import { YearSlider } from "./useThree/yearSlider";
 import type { MoonquakeData } from "@/type";
 import { Option, OptionConstants } from "@/type/option";
@@ -43,8 +43,11 @@ export const Main = () => {
     <Box w="100%" h="100svh" position="relative" overflow="none">
       <Header option={option} setOption={setOption} />
       <Panel choiceMoonquake={choiceMoonquake} />
-      {!isMap && <YearSlider option={option} setOption={setOption} />}
-      <Play option={option} setOption={setOption} />
+      {!isMap && option.playInfo.status === "stop" ? (
+        <YearSlider option={option} setOption={setOption} />
+      ) : (
+        <Play option={option} setOption={setOption} />
+      )}
 
       <LoadingBox loadingPageStep={loadingPageStep} />
 
