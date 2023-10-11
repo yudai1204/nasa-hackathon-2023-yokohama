@@ -4,11 +4,13 @@ import { Header } from "./header";
 import { LoadingBox } from "./loadingBox";
 import { MapComponent } from "./mapLibre";
 import { Panel } from "./panel";
+import { Play } from "./play";
 import { MainCanvas } from "./useThree/mainCanvas";
 import { YearSlider } from "./useThree/yearSlider";
 import type { MoonquakeData } from "@/type";
 import { Option, OptionConstants } from "@/type/option";
 import { fetchArtificialImpactCSV, fetchDeepMoonquakeCSV, fetchShallowMoonquakeCSV } from "@/utils/fetchMoonquakeCSV";
+import { filterMoonQuake } from "@/utils/filterMoonquake";
 
 export const Main = () => {
   const [isMap, setIsMap] = useState(false);
@@ -19,6 +21,7 @@ export const Main = () => {
     maxYear: OptionConstants.maxYear,
     typeFilter: OptionConstants.typeFilter,
     performanceMode: OptionConstants.performanceMode,
+    playInfo: OptionConstants.playInfo,
   });
   const [loadingPageStep, setLoadingPageStep] = useState(0);
   const [choiceMoonquake, setChoiceMoonquake] = useState<MoonquakeData | null>(null);
@@ -41,6 +44,7 @@ export const Main = () => {
       <Header option={option} setOption={setOption} />
       <Panel choiceMoonquake={choiceMoonquake} />
       {!isMap && <YearSlider option={option} setOption={setOption} />}
+      <Play option={option} setOption={setOption} />
 
       <LoadingBox loadingPageStep={loadingPageStep} />
 
@@ -54,7 +58,7 @@ export const Main = () => {
         <Box w="100%" h="100%" position="absolute" top={0} left={0} zIndex={isMap ? -1 : 0}>
           <MainCanvas
             setIsMap={setIsMap}
-            moonquakeData={moonquakeData}
+            moonquakeData={filterMoonQuake(moonquakeData, option)}
             option={option}
             choiceMoonquake={choiceMoonquake}
             setChoiceMoonquake={setChoiceMoonquake}
