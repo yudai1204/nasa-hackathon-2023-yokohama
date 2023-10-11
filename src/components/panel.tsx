@@ -20,7 +20,7 @@ const convertToData = (moonquake: MoonquakeData | null): Data => {
   const latitude = location.latitude;
   const longitude = location.longitude;
   const type = ["Shallow Moonquake", "Deep Moonquake", "Artificial Impact"][moonquake.type];
-  const addDataKey = ["magnitude", "depth", "AI"][moonquake.type];
+  const addDataKey = ["Magnitude", "Depth", "AI"][moonquake.type];
   const addDataValue = (() => {
     if (isShallowMoonquake(moonquake)) return moonquake.magnitude;
     if (isDeepMoonquake(moonquake)) return moonquake.depth;
