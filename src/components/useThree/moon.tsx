@@ -20,7 +20,7 @@ export const Moon = (props: Props) => {
   useFrame(() => {
     const moon = moonRef.current;
     if (!moon || !option.autoRotate) return;
-    moon.rotation.y += 0.001;
+    moon.rotation.y += 0.0005;
   });
 
   return (
