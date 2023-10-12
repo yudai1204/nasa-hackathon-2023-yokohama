@@ -1,15 +1,9 @@
 import { useEffect, useRef, useState } from "react";
+import { PlayControl, PlayState } from "@/type";
 
-type Control = {
-  start: () => void;
-  stop: () => void;
-};
-
-type State = "run" | "stop";
-
-export const usePlayInterval = (fn: () => void, interval: number): Control => {
+export const usePlayInterval = (fn: () => void, interval: number): PlayControl => {
   const funcRef = useRef<() => void>();
-  const [state, setState] = useState<State>("stop");
+  const [state, setState] = useState<PlayState>("stop");
   const start = () => {
     setState("run");
   };
