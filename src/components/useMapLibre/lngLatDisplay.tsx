@@ -14,11 +14,11 @@ export const LngLatDisplay = (props: Props) => {
     const pageWidthLng = lngLats[1].lng - lngLats[0].lng;
     const centerLat = (lngLats[0].lat + lngLats[1].lat) / 2;
     const cos = Math.cos((centerLat * Math.PI) / 180);
-    return Math.floor(((pageWidthLng * 100) / windowWidth) * 30.32335 * cos);
+    return Math.floor(((pageWidthLng * 100) / windowWidth) * 15.16 * cos);
   }, [lngLats, windowWidth]);
 
   return (
-    <Flex position="absolute" w="100%" bottom={50} zIndex={1} align="center" justify="center">
+    <Flex position="absolute" w="100%" bottom={50} zIndex={1} align="center" justify="center" userSelect="none">
       <Flex
         w="80%"
         maxW="360px"
