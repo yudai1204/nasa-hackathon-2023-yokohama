@@ -23,7 +23,7 @@ export const Earth = (props: Props) => {
     setStateTheta(theta);
     const position = convertToCoordinates(radius, phi, theta);
     earth.position.set(position.x, position.y, position.z);
-    earth.rotation.y += 0.001;
+    earth.rotation.y += 0.002;
   });
 
   return (
