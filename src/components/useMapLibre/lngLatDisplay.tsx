@@ -18,7 +18,7 @@ export const LngLatDisplay = (props: Props) => {
   }, [lngLats, windowWidth]);
 
   return (
-    <Flex position="absolute" w="100%" bottom={50} zIndex={1} align="center" justify="center">
+    <Flex position="absolute" w="100%" bottom={50} zIndex={1} align="center" justify="center" userSelect="none">
       <Flex
         w="80%"
         maxW="360px"
