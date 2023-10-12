@@ -1,5 +1,4 @@
 import {
-  Text,
   Flex,
   RangeSlider,
   RangeSliderFilledTrack,
