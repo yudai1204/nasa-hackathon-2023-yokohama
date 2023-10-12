@@ -1,5 +1,5 @@
 import { Box, Text, VStack, Icon } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MdDragIndicator } from "react-icons/md";
 import { MoonquakeData, isArtificialImpact, isDeepMoonquake, isShallowMoonquake } from "@/type";
 
@@ -48,9 +48,13 @@ type Props = {
 };
 
 export const Panel = (props: Props) => {
-  const [isOpen, setIsOpnen] = useState(true);
+  const [isOpen, setIsOpnen] = useState(false);
 
   const data = convertToData(props.choiceMoonquake);
+
+  useEffect(() => {
+    if (data.latitude && data.longitude) setIsOpnen(true);
+  }, [data.latitude, data.longitude]);
 
   return (
     <Box

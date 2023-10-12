@@ -15,13 +15,15 @@ type Props = {
   option: Option;
   choiceMoonquake: MoonquakeData | null;
   setChoiceMoonquake: React.Dispatch<React.SetStateAction<MoonquakeData | null>>;
+  setDisplayHint: React.Dispatch<React.SetStateAction<boolean>>;
 };
 export const MainCanvas = (props: Props) => {
-  const { moonquakeData, setIsMap, option, choiceMoonquake, setChoiceMoonquake } = props;
+  const { moonquakeData, setIsMap, option, choiceMoonquake, setChoiceMoonquake, setDisplayHint } = props;
 
   const orbitControlsRef = useRef<OrbitControlsImpl>(null);
 
   const handleOrbitControlsChange = () => {
+    setDisplayHint(false);
     const orbitControls = orbitControlsRef.current;
     if (!orbitControls) return;
     if (orbitControls.getDistance() <= orbitControls.minDistance) {
