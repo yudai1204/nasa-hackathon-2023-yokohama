@@ -1,5 +1,6 @@
 import maplibregl from "maplibre-gl";
 import { genQuakeSourceData } from "./moonQuake";
+import type { LngLat } from "@/type";
 import type { MoonquakeData } from "@/type/moon";
 import { fetchArtificialImpactCSV, fetchDeepMoonquakeCSV, fetchShallowMoonquakeCSV } from "@/utils/fetchMoonquakeCSV";
 
@@ -14,9 +15,10 @@ type Props = {
   zoom: number;
   setIsMap: React.Dispatch<React.SetStateAction<boolean>>;
   setChoiceMoonquake: React.Dispatch<React.SetStateAction<MoonquakeData | null>>;
+  setLngLats: React.Dispatch<React.SetStateAction<[LngLat, LngLat]>>;
 };
 export const mapLibreLogic = (props: Props) => {
-  const { container, latitude, longitude, zoom, setIsMap, setChoiceMoonquake } = props;
+  const { container, latitude, longitude, zoom, setIsMap, setChoiceMoonquake, setLngLats } = props;
   if (container === null) return;
   const map = new maplibregl.Map({
     container,
@@ -142,6 +144,13 @@ export const mapLibreLogic = (props: Props) => {
       paint: {
         "text-color": "#FFFFFF",
       },
+    });
+
+    map.on("moveend", () => {
+      const bounds = map.getBounds();
+      const sw = bounds.getSouthWest();
+      const ne = bounds.getNorthEast();
+      setLngLats([sw, ne]);
     });
 
     map.on("click", "shallow-moonquake-layer", (e) => {
