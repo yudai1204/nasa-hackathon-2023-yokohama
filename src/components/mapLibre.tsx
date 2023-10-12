@@ -1,7 +1,13 @@
 import { Box } from "@chakra-ui/react";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { mapLibreLogic } from "./useMapLibre";
-import type { MoonquakeData } from "@/type/moon";
+import { LngLatDisplay } from "./useMapLibre/lngLatDisplay";
+import type { MoonquakeData, LngLat } from "@/type";
+
+const defaultLngLats: [LngLat, LngLat] = [
+  { lng: -40, lat: -40 },
+  { lng: 40, lat: 40 },
+];
 
 type Props = {
   setIsMap: React.Dispatch<React.SetStateAction<boolean>>;
@@ -9,7 +15,19 @@ type Props = {
 };
 export const MapComponent = (props: Props) => {
   const { setIsMap, setChoiceMoonquake } = props;
+  const [lngLats, setLngLats] = React.useState<[LngLat, LngLat]>(defaultLngLats);
   const mapContainer = useRef(null);
+
+  const [windowWidth, setWindowWidth] = useState<number>();
+
+  useEffect(() => {
+    setWindowWidth(window.innerWidth);
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const mapPosition = {
@@ -19,6 +37,7 @@ export const MapComponent = (props: Props) => {
       zoom: 1,
       setIsMap,
       setChoiceMoonquake,
+      setLngLats,
     };
     mapLibreLogic(mapPosition);
   }, [mapContainer, setIsMap, setChoiceMoonquake]);
@@ -26,6 +45,7 @@ export const MapComponent = (props: Props) => {
   return (
     <>
       <Box ref={mapContainer} w="100%" h="100%" bgColor="black" />
+      <LngLatDisplay lngLats={lngLats} windowWidth={windowWidth} />
     </>
   );
 };
