@@ -18,7 +18,7 @@ import {
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { SwitchSetting, TypeFilterSetting } from "@/components/useHeader";
 import { Footer } from "@/components/useHeader/footer";
-import { Option } from "@/type/option";
+import { Option } from "@/type";
 
 type Props = {
   option: Option;
@@ -120,7 +120,15 @@ export const Header = (props: Props) => {
               <Text fontSize={24} fontWeight="medium">
                 Time Speed
               </Text>
-              <Slider aria-label="slider-ex-2" colorScheme="teal" defaultValue={30}>
+              <Slider
+                aria-label="slider-ex-2"
+                colorScheme="teal"
+                min={1}
+                max={20}
+                defaultValue={10}
+                value={option.playInfo.speed}
+                onChange={(speed) => setOption({ ...option, playInfo: { ...option.playInfo, speed: speed } })}
+              >
                 <SliderTrack>
                   <SliderFilledTrack />
                 </SliderTrack>
