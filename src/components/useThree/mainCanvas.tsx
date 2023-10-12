@@ -2,6 +2,7 @@ import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useRef } from "react";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
+import { Earth } from "./earth";
 import { Moon } from "./moon";
 import { Universe } from "./universe";
 import type { MoonquakeData } from "@/type";
@@ -36,7 +37,7 @@ export const MainCanvas = (props: Props) => {
         fov: 45,
         near: 0.1,
         far: 1000,
-        position: [0, 300, 0],
+        position: [300, 100, 0],
       }}
       style={{ background: "black" }}
     >
@@ -55,6 +56,7 @@ export const MainCanvas = (props: Props) => {
         choiceMoonquake={choiceMoonquake}
         setChoiceMoonquake={setChoiceMoonquake}
       />
+      {!option.performanceMode && <Earth option={option} />}
       <Universe />
     </Canvas>
   );
