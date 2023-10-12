@@ -1,4 +1,4 @@
-import { Button, Text, Flex, Icon, Slider, SliderFilledTrack, SliderThumb, SliderTrack } from "@chakra-ui/react";
+import { Button, Flex, Icon, Slider, SliderFilledTrack, SliderThumb, SliderTrack } from "@chakra-ui/react";
 import React from "react";
 import { AiFillPauseCircle, AiFillPlayCircle, AiFillStop } from "react-icons/ai";
 import { usePlayInterval } from "./usePlayInterval";
@@ -42,6 +42,9 @@ export const Play = (props: Props) => {
         px="20px"
         py="8px"
       >
+        <Button color="white" bg="gray.900" _hover={{ bg: "gray.800" }} onClick={() => changePlayInfo("stop")}>
+          <Icon as={AiFillStop} />
+        </Button>
         {option.playInfo.status === "play" ? (
           <Button color="white" bg="gray.900" _hover={{ bg: "gray.800" }} onClick={() => changePlayInfo("pause")}>
             <Icon as={AiFillPauseCircle} />
@@ -51,9 +54,6 @@ export const Play = (props: Props) => {
             <Icon as={AiFillPlayCircle} />
           </Button>
         )}
-        <Button color="white" bg="gray.900" _hover={{ bg: "gray.800" }} onClick={() => changePlayInfo("stop")}>
-          <Icon as={AiFillStop} />
-        </Button>{" "}
         <Slider
           mx={10}
           min={OptionConstants.minYear}
@@ -67,7 +67,9 @@ export const Play = (props: Props) => {
           </SliderTrack>
           <SliderThumb />
         </Slider>
-        <Text color="white">{option.playInfo.year}</Text>
+        <Flex justify="center" align="center" color="white">
+          {option.playInfo.year}
+        </Flex>
       </Flex>
     </Flex>
   );

@@ -41,9 +41,9 @@ export const YearSlider = (props: Props) => {
         >
           <Icon as={AiFillClockCircle} />
         </Button>
-        <Text fontSize="16px" color="white">
+        <Flex justify="center" align="center" fontSize="16px" color="white">
           {option.minYear}
-        </Text>
+        </Flex>
         <RangeSlider
           min={OptionConstants.minYear}
           max={OptionConstants.maxYear}
@@ -58,9 +58,9 @@ export const YearSlider = (props: Props) => {
           <RangeSliderThumb index={0} />
           <RangeSliderThumb index={1} />
         </RangeSlider>
-        <Text fontSize="16px" color="white">
+        <Flex justify="center" align="center" fontSize="16px" color="white">
           {option.maxYear}
-        </Text>
+        </Flex>
       </Flex>
     </Flex>
   );
