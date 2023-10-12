@@ -13,7 +13,7 @@ export const Earth = (props: Props) => {
   const earthRef = useRef<Mesh>(null);
   const radius = 500;
   const phi = Math.PI / 2;
-  const [stateTheta, setStateTheta] = useState<number>(Math.PI);
+  const [stateTheta, setStateTheta] = useState<number>(0);
 
   useFrame(() => {
     const earth = earthRef.current;
@@ -23,7 +23,7 @@ export const Earth = (props: Props) => {
     setStateTheta(theta);
     const position = convertToCoordinates(radius, phi, theta);
     earth.position.set(position.x, position.y, position.z);
-    earth.rotation.y += 0.001;
+    earth.rotation.y += 0.002;
   });
 
   return (
