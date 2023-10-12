@@ -7,8 +7,7 @@ import { Panel } from "./panel";
 import { MainCanvas } from "./useThree/mainCanvas";
 import { Play } from "./useThree/play";
 import { YearSlider } from "./useThree/yearSlider";
-import type { MoonquakeData } from "@/type";
-import { Option, OptionConstants } from "@/type/option";
+import { MoonquakeData, Option, OptionConstants } from "@/type";
 import { fetchArtificialImpactCSV, fetchDeepMoonquakeCSV, fetchShallowMoonquakeCSV } from "@/utils/fetchMoonquakeCSV";
 import { filterMoonQuake } from "@/utils/filterMoonquake";
 

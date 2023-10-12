@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { AiFillClockCircle } from "react-icons/ai";
-import { Option, OptionConstants } from "@/type/option";
+import { Option, OptionConstants } from "@/type";
 
 type Props = {
   option: Option;

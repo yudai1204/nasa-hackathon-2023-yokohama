@@ -2,8 +2,7 @@ import { useFrame, useLoader } from "@react-three/fiber";
 import React from "react";
 import { Group, TextureLoader } from "three";
 import { Pin } from "./pin";
-import { MoonquakeData } from "@/type";
-import { Option } from "@/type/option";
+import { MoonquakeData, Option } from "@/type";
 
 type Props = {
   option: Option;

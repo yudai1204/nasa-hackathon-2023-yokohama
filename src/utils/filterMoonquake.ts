@@ -1,5 +1,4 @@
-import { MoonquakeData } from "@/type/moon";
-import { Option, OptionConstants } from "@/type/option";
+import { MoonquakeData, Option, OptionConstants } from "@/type";
 
 export const filterMoonQuake = (moonquakeData: MoonquakeData[], option: Option): MoonquakeData[] => {
   if (option.playInfo.status === "stop") {

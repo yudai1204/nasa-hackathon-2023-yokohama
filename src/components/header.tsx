@@ -18,7 +18,7 @@ import {
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { SwitchSetting, TypeFilterSetting } from "@/components/useHeader";
 import { Footer } from "@/components/useHeader/footer";
-import { Option } from "@/type/option";
+import { Option } from "@/type";
 
 type Props = {
   option: Option;
