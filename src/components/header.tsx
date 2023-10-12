@@ -106,14 +106,14 @@ export const Header = (props: Props) => {
                     Height Map
                   </Switch>
                 </Box>
-                <Box w="100%">
+                {/* <Box w="100%">
                   <Switch size="md" colorScheme="teal" defaultChecked fontSize={18}>
                     Lunar eclipse
                   </Switch>
-                </Box>
+                </Box> */}
               </VStack>
               <Divider borderColor="gray.600" pt={4} />
-              <Box w="100%" pt={2}>
+              {/* <Box w="100%" pt={2}>
                 <Text fontSize={24} fontWeight="medium">
                   Change Size
                 </Text>
@@ -123,7 +123,7 @@ export const Header = (props: Props) => {
                   </SliderTrack>
                   <SliderThumb />
                 </Slider>
-              </Box>
+              </Box> */}
               <Box w="100%" pt={2}>
                 <Text fontSize={24} fontWeight="medium">
                   Time Speed
@@ -143,7 +143,7 @@ export const Header = (props: Props) => {
                   <SliderThumb />
                 </Slider>
               </Box>
-              <Box w="100%" pt={2}>
+              {/* <Box w="100%" pt={2}>
                 <Text fontSize={24} fontWeight="medium">
                   Layer Transparency
                 </Text>
@@ -156,7 +156,7 @@ export const Header = (props: Props) => {
                   </SliderTrack>
                   <SliderThumb />
                 </Slider>
-              </Box>
+              </Box> */}
               <Divider borderColor="gray.600" pt={4} />
               <Box w="100%" py={2}>
                 <Text fontSize={24} fontWeight="medium" pb={2}>

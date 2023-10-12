@@ -59,6 +59,7 @@ export const mapLibreLogic = (props: Props) => {
           },
         },
       ],
+      glyphs: "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
     },
     center: [latitude, longitude],
     minZoom,
@@ -130,11 +131,16 @@ export const mapLibreLogic = (props: Props) => {
     // GeoJSONデータを使用して新しいレイヤーを追加
     map.addLayer({
       id: "geojson-points",
-      type: "circle",
+      type: "symbol",
       source: "geojson-source",
+      layout: {
+        "text-field": ["get", "name"],
+        "text-variable-anchor": ["top"],
+        "text-radial-offset": 0.5,
+        "text-justify": "auto",
+      },
       paint: {
-        "circle-radius": 6,
-        "circle-color": "#B42222",
+        "text-color": "#FFFFFF",
       },
     });
 
