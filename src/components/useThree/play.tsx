@@ -16,12 +16,12 @@ export const Play = (props: Props) => {
     if (option.playInfo.year + 1 <= OptionConstants.maxYear) {
       setOption({ ...option, playInfo: { ...option.playInfo, year: option.playInfo.year + 1 } });
     } else {
-      changePlayInfo("pause");
+      changePlayInfo("pause", { ...option, playInfo: { ...option.playInfo, year: OptionConstants.minYear } });
     }
   }, 1000 / option.playInfo.speed);
 
-  const changePlayInfo = (status: PlayStatus) => {
-    setOption({ ...option, playInfo: { ...option.playInfo, status: status } });
+  const changePlayInfo = (status: PlayStatus, opt: Option = option) => {
+    setOption({ ...opt, playInfo: { ...opt.playInfo, status: status } });
     if (status === "play") {
       start();
     } else {
