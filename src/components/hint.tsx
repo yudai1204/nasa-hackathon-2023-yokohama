@@ -34,7 +34,7 @@ export const HintPopup = (props: Props) => {
 
   return (
     <Flex
-      zIndex={10}
+      zIndex={1}
       position="absolute"
       top="40%"
       left={0}
