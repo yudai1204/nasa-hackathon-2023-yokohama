@@ -74,17 +74,9 @@ export const Header = (props: Props) => {
         opacity={{ base: 0.9, md: 0.7 }}
         backdropFilter="blur(2px)"
       >
-        <Icon
-          position="absolute"
-          top="16px"
-          left="16px"
-          as={isOpen ? AiOutlineClose : AiOutlineMenu}
-          fontSize={32}
-          color={isOpen ? "gray.600" : "gray.100"}
-          onClick={onToggle}
-          zIndex={1}
-          cursor="pointer"
-        />
+        <Box pos="absolute" top="8px" left="8px" p="8px" cursor="pointer" onClick={onToggle} zIndex={1}>
+          <Icon as={isOpen ? AiOutlineClose : AiOutlineMenu} fontSize={32} color={isOpen ? "gray.600" : "gray.100"} />
+        </Box>
         <SlideFade in={isOpen} offsetX={-80} offsetY={0} unmountOnExit>
           <Box bgColor="gray.100" h="100svh" w="100%" position="absolute">
             <Box
