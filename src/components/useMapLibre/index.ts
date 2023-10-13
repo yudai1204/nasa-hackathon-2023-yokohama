@@ -1,7 +1,8 @@
 import maplibregl from "maplibre-gl";
 import { genQuakeSourceData } from "./moonQuake";
-import type { MoonquakeData } from "@/type/moon";
+import type { LngLat, MoonquakeData, Option } from "@/type";
 import { fetchArtificialImpactCSV, fetchDeepMoonquakeCSV, fetchShallowMoonquakeCSV } from "@/utils/fetchMoonquakeCSV";
+import { filterMoonQuake } from "@/utils/filterMoonquake";
 
 const minZoom = 3;
 const maxZoom = 8;
@@ -14,9 +15,11 @@ type Props = {
   zoom: number;
   setIsMap: React.Dispatch<React.SetStateAction<boolean>>;
   setChoiceMoonquake: React.Dispatch<React.SetStateAction<MoonquakeData | null>>;
+  setLngLats: React.Dispatch<React.SetStateAction<[LngLat, LngLat]>>;
+  option: Option;
 };
 export const mapLibreLogic = (props: Props) => {
-  const { container, latitude, longitude, zoom, setIsMap, setChoiceMoonquake } = props;
+  const { container, latitude, longitude, zoom, setIsMap, setChoiceMoonquake, setLngLats, option } = props;
   if (container === null) return;
   const map = new maplibregl.Map({
     container,
@@ -79,9 +82,9 @@ export const mapLibreLogic = (props: Props) => {
 
   map.on("load", async () => {
     // 月地震データを読み込む
-    const shallowMoonquakes = (await fetchShallowMoonquakeCSV()) as MoonquakeData[];
-    const deepMoonquakes = (await fetchDeepMoonquakeCSV()) as MoonquakeData[];
-    const artificialImpacts = (await fetchArtificialImpactCSV()) as MoonquakeData[];
+    const shallowMoonquakes = filterMoonQuake(await fetchShallowMoonquakeCSV(), option);
+    const deepMoonquakes = filterMoonQuake(await fetchDeepMoonquakeCSV(), option);
+    const artificialImpacts = filterMoonQuake(await fetchArtificialImpactCSV(), option);
 
     map.addSource("shallow-moonquake-source", genQuakeSourceData(shallowMoonquakes));
     map.addSource("deep-moonquake-source", genQuakeSourceData(deepMoonquakes));
@@ -142,6 +145,13 @@ export const mapLibreLogic = (props: Props) => {
       paint: {
         "text-color": "#FFFFFF",
       },
+    });
+
+    map.on("moveend", () => {
+      const bounds = map.getBounds();
+      const sw = bounds.getSouthWest();
+      const ne = bounds.getNorthEast();
+      setLngLats([sw, ne]);
     });
 
     map.on("click", "shallow-moonquake-layer", (e) => {
