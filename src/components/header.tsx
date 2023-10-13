@@ -152,7 +152,7 @@ export const Header = (props: Props) => {
                   colorScheme="teal"
                   min={1}
                   max={20}
-                  defaultValue={10}
+                  defaultValue={option.playInfo.speed}
                   value={option.playInfo.speed}
                   onChange={(speed) => setOption({ ...option, playInfo: { ...option.playInfo, speed: speed } })}
                 >
@@ -191,7 +191,7 @@ export const Header = (props: Props) => {
                       min={0}
                       max={100}
                       step={10}
-                      defaultValue={40}
+                      defaultValue={option.layerOpacity * 100}
                       onChange={(e) => {
                         setLayerOpacity(e);
                         setOption({ ...option, layerOpacity: e / 100 });
