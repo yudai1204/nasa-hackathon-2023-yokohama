@@ -1,5 +1,5 @@
-import { Box, Text, Checkbox, Icon } from "@chakra-ui/react";
-import { AiFillInfoCircle } from "react-icons/ai";
+import { Box, Text, Checkbox } from "@chakra-ui/react";
+import { InfoBox } from "./infoBox";
 import { MoonquakeType, Option } from "@/type";
 
 type Props = {
@@ -25,10 +25,7 @@ export const TypeFilterSetting = (props: Props) => {
       <Text fontSize={24} fontWeight="medium">
         Filter
       </Text>
-      <Text fontSize={12}>
-        <Icon as={AiFillInfoCircle} fontSize={12} mr="8px" />
-        Click to filter.
-      </Text>
+      <InfoBox>Select to filter by moonquake types.</InfoBox>
       <Box w="100%" pt={3} pb={1}>
         <Checkbox size="lg" colorScheme="orange" onChange={() => changetypeFilter(0)} defaultChecked>
           Shallow

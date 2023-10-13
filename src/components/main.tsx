@@ -22,6 +22,9 @@ export const Main = () => {
     typeFilter: OptionConstants.typeFilter,
     performanceMode: OptionConstants.performanceMode,
     playInfo: OptionConstants.playInfo,
+    displayLayer: OptionConstants.displayLayer,
+    layerOpacity: OptionConstants.layerOpacity,
+    layerIdx: OptionConstants.layerIdx,
   });
   const [loadingPageStep, setLoadingPageStep] = useState(0);
   const [choiceMoonquake, setChoiceMoonquake] = useState<MoonquakeData | null>(null);
