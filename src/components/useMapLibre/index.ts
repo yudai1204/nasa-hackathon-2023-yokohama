@@ -24,9 +24,11 @@ type Props = {
   setChoiceMoonquake: React.Dispatch<React.SetStateAction<MoonquakeData | null>>;
   setLngLats: React.Dispatch<React.SetStateAction<[LngLat, LngLat]>>;
   option: Option;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  toast: any;
 };
 export const mapLibreLogic = (props: Props) => {
-  const { container, latitude, longitude, zoom, setIsMap, setChoiceMoonquake, setLngLats, option } = props;
+  const { container, latitude, longitude, zoom, setIsMap, setChoiceMoonquake, setLngLats, option, toast } = props;
   if (container === null) return;
   const map = new maplibregl.Map({
     container,
@@ -157,6 +159,19 @@ export const mapLibreLogic = (props: Props) => {
       const sw = bounds.getSouthWest();
       const ne = bounds.getNorthEast();
       setLngLats([sw, ne]);
+    });
+
+    map.on("click", "geojson-points", (e) => {
+      const feature = e.features?.length && e.features[0];
+      if (!feature) return;
+      const properties = feature.properties;
+      console.log(properties);
+      toast({
+        title: properties.name,
+        description: properties.detail,
+        position: "top",
+        duration: 4000,
+      });
     });
 
     map.on("click", "shallow-moonquake-layer", (e) => {
