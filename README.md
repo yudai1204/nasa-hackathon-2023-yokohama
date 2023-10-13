@@ -20,7 +20,7 @@ Click [here](https://www.spaceappschallenge.org/2023/challenges/make-a-moonquake
 
 ## Video
 
-[!['Watch in YouTube'](/yt_thumb.png)](https://www.youtube.com/watch?v=IAwY9wcxcLQ)
+[!['Watch in YouTube'](/yt_thumb.png)](https://youtu.be/Il3rgj9Lo7g?si=-aGGVKj9JFeD0UFI)
 
 ## LICENSE
 
