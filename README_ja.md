@@ -20,7 +20,7 @@ LANG: [EN](/README.md) / **JP**
 
 ## Video
 
-[!['YouTube動画を見る'](/yt_thumb.png)](https://www.youtube.com/watch?v=IAwY9wcxcLQ)
+[!['YouTube動画を見る'](/yt_thumb.png)](https://youtu.be/Il3rgj9Lo7g?si=-aGGVKj9JFeD0UFI)
 
 ## ライセンス
 
