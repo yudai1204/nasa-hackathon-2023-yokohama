@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, useToast } from "@chakra-ui/react";
 import React, { useEffect, useRef, useState } from "react";
 import { mapLibreLogic } from "./useMapLibre";
 import { LngLatDisplay } from "./useMapLibre/lngLatDisplay";
@@ -22,6 +22,8 @@ export const MapComponent = (props: Props) => {
 
   const [windowWidth, setWindowWidth] = useState<number>();
 
+  const toast = useToast();
+
   useEffect(() => {
     setWindowWidth(window.innerWidth);
     const handleResize = () => {
@@ -40,11 +42,12 @@ export const MapComponent = (props: Props) => {
       setIsMap,
       setChoiceMoonquake,
       setLngLats,
+      toast,
       option,
     };
     if (removeFunc.current) removeFunc.current();
     removeFunc.current = mapLibreLogic(mapPosition);
-  }, [mapContainer, setIsMap, setChoiceMoonquake, option]);
+  }, [mapContainer, setIsMap, setChoiceMoonquake, option, toast]);
 
   return (
     <>
