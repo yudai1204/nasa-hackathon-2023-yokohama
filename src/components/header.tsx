@@ -10,13 +10,13 @@ import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
-  Switch,
   Divider,
-  Radio,
   RadioGroup,
 } from "@chakra-ui/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { InfoBox } from "./useHeader/infoBox";
+import { LayerRadio } from "./useHeader/layerRadio";
 import { SwitchSetting, TypeFilterSetting } from "@/components/useHeader";
 import { Footer } from "@/components/useHeader/footer";
 import { Option } from "@/type";
@@ -31,6 +31,7 @@ export const Header = (props: Props) => {
   const { option, setOption } = props;
   const { isOpen, onToggle } = useDisclosure();
   const width = { base: "100%", md: "280px" };
+  const [layerOpaciy, setLayerOpacity] = useState(40);
   const wideHeader = useWideHeader();
 
   useEffect(() => {
@@ -89,8 +90,9 @@ export const Header = (props: Props) => {
               <Divider borderColor="gray.600" pt={4} />
               <VStack w="100%" gap={1}>
                 <Text fontSize={24} fontWeight="medium" pt={2} w="100%">
-                  Settings
+                  General Settings
                 </Text>
+                <InfoBox>Select and change the behavior of the moon.</InfoBox>
                 <SwitchSetting
                   name="Performance Mode"
                   checked={option.performanceMode}
@@ -101,11 +103,6 @@ export const Header = (props: Props) => {
                   checked={option.autoRotate}
                   onChange={() => setOption({ ...option, autoRotate: !option.autoRotate })}
                 />
-                <Box w="100%">
-                  <Switch size="md" colorScheme="teal" defaultChecked fontSize={18}>
-                    Height Map
-                  </Switch>
-                </Box>
                 {/* <Box w="100%">
                   <Switch size="md" colorScheme="teal" defaultChecked fontSize={18}>
                     Lunar eclipse
@@ -128,6 +125,7 @@ export const Header = (props: Props) => {
                 <Text fontSize={24} fontWeight="medium">
                   Time Speed
                 </Text>
+                <InfoBox>Change the speed for the play function of the 3D moonquakes map.</InfoBox>
                 <Slider
                   aria-label="slider-ex-2"
                   colorScheme="teal"
@@ -143,39 +141,75 @@ export const Header = (props: Props) => {
                   <SliderThumb />
                 </Slider>
               </Box>
-              {/* <Box w="100%" pt={2}>
-                <Text fontSize={24} fontWeight="medium">
-                  Layer Transparency
-                </Text>
-                <Text fontSize={16} pb={2}>
-                  (only map)
-                </Text>
-                <Slider aria-label="slider-ex-2" colorScheme="teal" defaultValue={30}>
-                  <SliderTrack>
-                    <SliderFilledTrack />
-                  </SliderTrack>
-                  <SliderThumb />
-                </Slider>
-              </Box> */}
               <Divider borderColor="gray.600" pt={4} />
               <Box w="100%" py={2}>
                 <Text fontSize={24} fontWeight="medium" pb={2}>
-                  Layer Select
+                  Layer Settings
                 </Text>
-                <RadioGroup colorScheme="teal">
+                <InfoBox>Select the second layer for the 2D map.</InfoBox>
+                <Box w="100%">
+                  <SwitchSetting
+                    name="Display Layer"
+                    checked={option.displayLayer}
+                    onChange={() => setOption({ ...option, displayLayer: !option.displayLayer })}
+                  />
+                  <Divider borderColor="gray.400" my={4} />
+                  <Box w="100%">
+                    <Text fontSize={16} pb={2}>
+                      Opacity: {layerOpaciy}%
+                    </Text>
+                    <Slider
+                      aria-label="slider-ex-3"
+                      colorScheme="teal"
+                      min={0}
+                      max={100}
+                      step={10}
+                      defaultValue={40}
+                      onChange={(e) => {
+                        setLayerOpacity(e);
+                        setOption({ ...option, layerOpacity: e / 100 });
+                      }}
+                    >
+                      <SliderTrack>
+                        <SliderFilledTrack />
+                      </SliderTrack>
+                      <SliderThumb />
+                    </Slider>
+                  </Box>
+                </Box>
+                <Divider borderColor="gray.400" my={4} />
+                <RadioGroup
+                  colorScheme="teal"
+                  defaultValue="0"
+                  onChange={(e) => {
+                    setOption({ ...option, layerIdx: parseInt(e) });
+                  }}
+                >
                   <Stack direction="column">
-                    <Radio value="1" bgColor="gray.400">
-                      1
-                    </Radio>
-                    <Radio value="2" bgColor="gray.400">
-                      2
-                    </Radio>
-                    <Radio value="3" bgColor="gray.400">
-                      3
-                    </Radio>
-                    <Radio value="4" bgColor="gray.400">
-                      4
-                    </Radio>
+                    <LayerRadio
+                      value={0}
+                      mapName="Color Hillshade"
+                      projectName="Kaguya LGM2011"
+                      projectUrl="https://trek.nasa.gov/moon/TrekWS/rest/cat/metadata/fgdc/html?label=LRO_LOLAKaguya_ClrHillshade_60N60S_512ppd"
+                    />
+                    <LayerRadio
+                      value={1}
+                      mapName="Freeair Gravity"
+                      projectName="Kaguya LGM2011"
+                      projectUrl="https://trek.nasa.gov/moon/TrekWS/rest/cat/metadata/fgdc/html?label=Kaguya_LGM2011_FreeairGravity_Colorized_Global_mgal3m_20ppd"
+                    />
+                    <LayerRadio
+                      value={2}
+                      mapName="Bouguer disturbances"
+                      projectName="GRAIL L180"
+                      projectUrl="https://trek.nasa.gov/moon/TrekWS/rest/cat/metadata/fgdc/html?label=gggrx_1200a_boug_l180.eq"
+                    />
+                    <LayerRadio
+                      value={3}
+                      mapName="Crust-mantle Interface Depth"
+                      projectName="GRAIL"
+                      projectUrl="https://trek.nasa.gov/moon/TrekWS/rest/cat/metadata/fgdc/html?label=Model1_cmi.eq"
+                    />
                   </Stack>
                 </RadioGroup>
               </Box>

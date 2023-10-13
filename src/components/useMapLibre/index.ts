@@ -8,6 +8,13 @@ const minZoom = 3;
 const maxZoom = 8;
 const moonQuakeRad = 16;
 
+const layerMaps = [
+  "https://trek.nasa.gov/tiles/Moon/EQ/LRO_LOLAKaguya_ClrHillshade_60N60S_512ppd/1.0.0//default/default028mm/{z}/{y}/{x}.png",
+  "https://trek.nasa.gov/tiles/Moon/EQ/Kaguya_LGM2011_FreeairGravity_Colorized_Global_mgal3m_20ppd/1.0.0//default/default028mm/{z}/{y}/{x}.png",
+  "https://trek.nasa.gov/tiles/Moon/EQ/gggrx_1200a_boug_l180.eq/1.0.0//default/default028mm/{z}/{y}/{x}.png",
+  "https://trek.nasa.gov/tiles/Moon/EQ/Model1_cmi.eq/1.0.0//default/default028mm/{z}/{y}/{x}.png",
+];
+
 type Props = {
   container: HTMLElement | null;
   latitude: number;
@@ -41,9 +48,7 @@ export const mapLibreLogic = (props: Props) => {
         },
         test: {
           type: "raster",
-          tiles: [
-            "https://trek.nasa.gov/tiles/Moon/EQ/LRO_LOLAKaguya_ClrHillshade_60N60S_512ppd/1.0.0//default/default028mm/{z}/{y}/{x}.png",
-          ],
+          tiles: [layerMaps[option.layerIdx]],
           tileSize: 256,
         },
       },
@@ -58,7 +63,7 @@ export const mapLibreLogic = (props: Props) => {
           type: "raster",
           source: "test",
           paint: {
-            "raster-opacity": 0.4,
+            "raster-opacity": option.displayLayer ? option.layerOpacity : 0,
           },
         },
       ],
@@ -95,7 +100,7 @@ export const mapLibreLogic = (props: Props) => {
       source: "shallow-moonquake-source",
       paint: {
         "circle-radius": moonQuakeRad,
-        "circle-color": "#FFA50055",
+        "circle-color": "#FFA50088",
       },
     });
     map.addLayer({
@@ -104,7 +109,7 @@ export const mapLibreLogic = (props: Props) => {
       source: "deep-moonquake-source",
       paint: {
         "circle-radius": moonQuakeRad,
-        "circle-color": "#ee82ee55",
+        "circle-color": "#ee82ee88",
       },
     });
     map.addLayer({
@@ -113,7 +118,7 @@ export const mapLibreLogic = (props: Props) => {
       source: "artical-moonquake-source",
       paint: {
         "circle-radius": moonQuakeRad,
-        "circle-color": "#0000FF55",
+        "circle-color": "#0000FF88",
       },
     });
 
