@@ -209,7 +209,7 @@ export const Header = (props: Props) => {
                 <Divider borderColor="gray.400" my={4} />
                 <RadioGroup
                   colorScheme="teal"
-                  defaultValue="0"
+                  defaultValue={option.layerIdx.toString()}
                   onChange={(e) => {
                     setOption({ ...option, layerIdx: parseInt(e) });
                   }}
