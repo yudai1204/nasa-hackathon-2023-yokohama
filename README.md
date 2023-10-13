@@ -4,11 +4,11 @@ LANG: **EN** / [JP](/README_ja.md)
 
 ## About this project
 
-This is a project that is made for `NASA Space Apps Challange 2023`.  
-We produce a moonquake map with the SPA.
+This is a webapp project made for `NASA Space Apps Challange 2023`.  
+We produce a moonquake map with SPA.    
 You can combine 2D and 3D moonquake information with large amounts of data!
 
-Click [here](https://www.spaceappschallenge.org/2023/challenges/make-a-moonquake-map-20/) to view the page of this theme (NASA's opage).
+Click [here](https://www.spaceappschallenge.org/2023/challenges/make-a-moonquake-map-20/) to view the page of this theme (NASA's page).
 
 ### VIEW DEMO
 
@@ -24,12 +24,12 @@ Click [here](https://www.spaceappschallenge.org/2023/challenges/make-a-moonquake
 
 ## LICENSE
 
-This is a [AGPL LICENSE](./LICENSE) Project.
+This is an [AGPL LICENSE](./LICENSE) Project.
 
 ## About us
 
 We are a team named `YokoTech` a.k.a `TechShiba`.  
-(We changed a teamname after the local challange at Yokohama)
+(We changed the teamname after the local challange at Yokohama.)
 
 ### Members
 
