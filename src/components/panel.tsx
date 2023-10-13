@@ -96,8 +96,8 @@ export const Panel = (props: Props) => {
 
         <VStack spacing={0} align="flex-start" opacity={isOpen ? 1 : 0} transition="0.3s">
           <DisplayDataItem label="Year" value={data.year} />
-          <DisplayDataItem label="Latitude" value={data.latitude} />
           <DisplayDataItem label="Longitude" value={data.longitude} />
+          <DisplayDataItem label="Latitude" value={data.latitude} />
           <DisplayDataItem label="Type" value={data.type} />
           <DisplayDataItem label={data.addDataKey} value={data.addDataValue} />
         </VStack>

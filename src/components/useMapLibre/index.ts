@@ -171,6 +171,7 @@ export const mapLibreLogic = (props: Props) => {
         description: properties.detail,
         position: "top",
         duration: 4000,
+        isClosable: true,
       });
     });
 
