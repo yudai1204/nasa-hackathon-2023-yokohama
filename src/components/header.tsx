@@ -12,6 +12,7 @@ import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
+  SliderMark,
   Divider,
   RadioGroup,
 } from "@chakra-ui/react";
@@ -28,6 +29,13 @@ import { useWideHeader } from "@/utils/useWideHeader";
 type Props = {
   option: Option;
   setOption: React.Dispatch<React.SetStateAction<Option>>;
+};
+
+const labelStyles = {
+  mt: "2",
+  ml: "-2.5",
+  fontSize: "sm",
+  color: "gray.600",
 };
 
 export const Header = (props: Props) => {
@@ -79,7 +87,7 @@ export const Header = (props: Props) => {
           cursor="pointer"
         />
         <SlideFade in={isOpen} offsetX={-80} offsetY={0} unmountOnExit>
-          <Box bgColor="gray.300" h="100svh" w="100%" position="absolute">
+          <Box bgColor="gray.100" h="100svh" w="100%" position="absolute">
             <Box
               position="absolute"
               top="0"
@@ -88,13 +96,14 @@ export const Header = (props: Props) => {
               w="100%"
               boxShadow="0 0 10px -3px #0008"
               borderColor="transparent"
-              pl="200px"
+              pl={{ base: "calc(100% - 120px)", md: "170px" }}
               pt="10px"
             >
-              <Button onClick={onHintOpen} bgColor={isHintOpen ? "gray.600" : "gray.300"}>
+              <Button onClick={onHintOpen} bgColor={isHintOpen ? "gray.300" : "transparent"} border="1px solid #0002">
                 <Tooltip>
-                  <AiOutlineInfoCircle />
+                  <Icon as={AiOutlineInfoCircle} />
                 </Tooltip>
+                <Text ml={1}>Guide</Text>
               </Button>
             </Box>
             <VStack h="calc(100svh - 60px)" mt="60px" pt="16px" px="26px" gap={2} color="gray.600" overflowY="scroll">
@@ -147,6 +156,12 @@ export const Header = (props: Props) => {
                   value={option.playInfo.speed}
                   onChange={(speed) => setOption({ ...option, playInfo: { ...option.playInfo, speed: speed } })}
                 >
+                  <SliderMark value={2} {...labelStyles}>
+                    slow
+                  </SliderMark>
+                  <SliderMark value={19} {...labelStyles}>
+                    fast
+                  </SliderMark>
                   <SliderTrack>
                     <SliderFilledTrack />
                   </SliderTrack>
@@ -166,7 +181,7 @@ export const Header = (props: Props) => {
                     onChange={() => setOption({ ...option, displayLayer: !option.displayLayer })}
                   />
                   <Divider borderColor="gray.400" my={4} />
-                  <Box w="100%">
+                  <Box w="100%" pb={2}>
                     <Text fontSize={16} pb={2}>
                       Opacity: {layerOpaciy}%
                     </Text>
@@ -182,6 +197,12 @@ export const Header = (props: Props) => {
                         setOption({ ...option, layerOpacity: e / 100 });
                       }}
                     >
+                      <SliderMark value={7} {...labelStyles}>
+                        transparent
+                      </SliderMark>
+                      <SliderMark value={84} {...labelStyles}>
+                        opaque
+                      </SliderMark>
                       <SliderTrack>
                         <SliderFilledTrack />
                       </SliderTrack>
@@ -220,6 +241,7 @@ export const Header = (props: Props) => {
                       value={3}
                       mapName="Crust-mantle Interface Depth"
                       projectName="GRAIL"
+                      fontSize={13}
                       projectUrl="https://trek.nasa.gov/moon/TrekWS/rest/cat/metadata/fgdc/html?label=Model1_cmi.eq"
                     />
                   </Stack>

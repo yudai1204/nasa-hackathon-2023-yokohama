@@ -6,13 +6,14 @@ type Props = {
   mapName: string;
   projectName: string;
   projectUrl: string;
+  fontSize?: number;
 };
 
 export const LayerRadio = (props: Props) => {
-  const { mapName, projectName, projectUrl, value } = props;
+  const { mapName, projectName, projectUrl, value, fontSize } = props;
   return (
     <Radio value={value.toString()} bgColor="gray.400">
-      <Text fontSize={16}>{mapName}</Text>
+      <Text fontSize={fontSize ?? 16}>{mapName}</Text>
       <Flex>
         <Text fontSize={12}>({projectName})</Text>
         <a href={projectUrl} target="_blank" rel="noopener noreferrer">
