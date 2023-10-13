@@ -18,6 +18,7 @@ export const MapComponent = (props: Props) => {
   const { setIsMap, setChoiceMoonquake, option } = props;
   const [lngLats, setLngLats] = React.useState<[LngLat, LngLat]>(defaultLngLats);
   const mapContainer = useRef(null);
+  const removeFunc = useRef<(() => void) | undefined>();
 
   const [windowWidth, setWindowWidth] = useState<number>();
 
@@ -39,9 +40,11 @@ export const MapComponent = (props: Props) => {
       setIsMap,
       setChoiceMoonquake,
       setLngLats,
+      option,
     };
-    mapLibreLogic(mapPosition);
-  }, [mapContainer, setIsMap, setChoiceMoonquake]);
+    if (removeFunc.current) removeFunc.current();
+    removeFunc.current = mapLibreLogic(mapPosition);
+  }, [mapContainer, setIsMap, setChoiceMoonquake, option]);
 
   return (
     <>
