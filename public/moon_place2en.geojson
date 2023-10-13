@@ -17,6 +17,26 @@
       "type": "Feature",
       "properties": {
         "id": null,
+        "name": "Hertzsprung",
+        "detail": "Lies in the northwestern fringe of the blast radius of the Mare Orientale impact basin. Noteworthy nearby craters include Michelson across the northeast rim, Vavilov across the western rim, and Lucretius to the southeast.",
+        "diameter": "536km"
+      },
+      "geometry": { "type": "Point", "coordinates": [-78.175689912508874, 4.338989267228172] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": null,
+        "name": "Leuschner",
+        "detail": "located on the far side of the Moon, to the northwest of Montes Cordillera. An interesting feature associated with Leuschner is the Catena Leuschner, which is a crater chain formation.",
+        "diameter": "49km"
+      },
+      "geometry": { "type": "Point", "coordinates": [-38.175689912508874, 3.338989267228172] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": null,
         "name": "Oceanus Procellarum",
         "detail": "The largest sea on the moon. Luna 9 and Surveyor 1 landed here. In the western part of the Ocean of Storms, the world's first hole leading underground was discovered.",
         "diameter": "2568km"
@@ -32,6 +52,26 @@
         "diameter": "96.07km"
       },
       "geometry": { "type": "Point", "coordinates": [140.052690461328801, 18.771676499122588] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": null,
+        "name": "Apollo 12 Landing Site",
+        "detail": "located in the southeastern region of Oceanus Procellarum, also known as the Ocean of Storms on the Moon.",
+        "diameter": ""
+      },
+      "geometry": { "type": "Point", "coordinates": [132.052690461328801, -4.771676499122588] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": null,
+        "name": "Apollo 14 Landing Site",
+        "detail": "Landed at a site in the Fra Mauro highlands. The landing site was initially meant for Apollo 13, but due to the in-flight incident experienced by that mission.",
+        "diameter": ""
+      },
+      "geometry": { "type": "Point", "coordinates": [142.052690461328801, -10.771676499122588] }
     },
     {
       "type": "Feature",
@@ -57,6 +97,26 @@
       "type": "Feature",
       "properties": {
         "id": null,
+        "name": "Schickard",
+        "detail": "Schickard is a lunar impact crater distinguished by its walled plain structure, situated in the southwest sector of the Moon near the lunar limb.",
+        "diameter": "212km"
+      },
+      "geometry": { "type": "Point", "coordinates": [70.052690461328801, -65.881677499222588] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": null,
+        "name": "Mersenlus",
+        "detail": "Located to the west of Mare Humorum in the southwestern part of the Moon. Heavily worn, especially in the lower northern section.",
+        "diameter": "420km"
+      },
+      "geometry": { "type": "Point", "coordinates": [103.052690461328801, -42.881677499222588] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": null,
         "name": "Mare Imbrium",
         "detail": "The second-largest lunar sea after the Ocean of Storms.",
         "diameter": "1123km"
@@ -72,6 +132,16 @@
         "diameter": "85.3km"
       },
       "geometry": { "type": "Point", "coordinates": [157.175689912508874, -65.237577708130885] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": null,
+        "name": "Mare Frigoris",
+        "detail": "Latin for Sea of Cold, is a notable lunar mare situated in the far north of the Moon. Mare Frigoris is described as a long, thin lunar sea, stretching east to west along the northern part of the Moon's disc for 1,400 km",
+        "diameter": "101km"
+      },
+      "geometry": { "type": "Point", "coordinates": [148.199111647434879, 75.19960301796182] }
     },
     {
       "type": "Feature",
