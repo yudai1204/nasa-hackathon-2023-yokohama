@@ -16,7 +16,7 @@ import {
   Divider,
   RadioGroup,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { AiOutlineClose, AiOutlineMenu, AiOutlineInfoCircle } from "react-icons/ai";
 import { DisplayHintModal } from "./useHeader/displayHint";
 import { InfoBox } from "./useHeader/infoBox";
@@ -43,7 +43,6 @@ export const Header = (props: Props) => {
   const { isOpen, onToggle } = useDisclosure();
   const { isOpen: isHintOpen, onOpen: onHintOpen, onClose: onHintClose } = useDisclosure();
   const width = { base: "100%", md: "280px" };
-  const [layerOpaciy, setLayerOpacity] = useState(40);
   const wideHeader = useWideHeader();
 
   useEffect(() => {
@@ -183,7 +182,7 @@ export const Header = (props: Props) => {
                   <Divider borderColor="gray.400" my={4} />
                   <Box w="100%" pb={2}>
                     <Text fontSize={16} pb={2}>
-                      Opacity: {layerOpaciy}%
+                      Opacity: {option.layerOpacity * 100}%
                     </Text>
                     <Slider
                       aria-label="slider-ex-3"
@@ -192,10 +191,7 @@ export const Header = (props: Props) => {
                       max={100}
                       step={10}
                       defaultValue={option.layerOpacity * 100}
-                      onChange={(e) => {
-                        setLayerOpacity(e);
-                        setOption({ ...option, layerOpacity: e / 100 });
-                      }}
+                      onChange={(e) => setOption({ ...option, layerOpacity: e / 100 })}
                     >
                       <SliderMark value={7} {...labelStyles}>
                         transparent
