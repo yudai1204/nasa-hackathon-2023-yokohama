@@ -35,7 +35,7 @@ export const LngLatDisplay = (props: Props) => {
         <Box w="100%">
           <Text fontSize="16px" color="white">
             <span style={{ display: "inline-block", width: "90px" }}>Longitude:</span>
-            {Math.floor((lngLats[0].lng + lngLats[1].lng) / 2)}°
+            {Math.floor((lngLats[0].lng + lngLats[1].lng) / 4)}°
           </Text>
           <Text fontSize="16px" color="white">
             <span style={{ display: "inline-block", width: "90px" }}>Latitude:</span>
