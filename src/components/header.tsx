@@ -1,11 +1,13 @@
 import {
   Box,
+  Button,
   Icon,
   useDisclosure,
   SlideFade,
   Stack,
   VStack,
   Text,
+  Tooltip,
   Slider,
   SliderTrack,
   SliderFilledTrack,
@@ -16,7 +18,8 @@ import {
   RadioGroup,
 } from "@chakra-ui/react";
 import { useEffect } from "react";
-import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineMenu, AiOutlineInfoCircle } from "react-icons/ai";
+import { DisplayHintModal } from "./useHeader/displayHint";
 import { SwitchSetting, TypeFilterSetting } from "@/components/useHeader";
 import { Footer } from "@/components/useHeader/footer";
 import { Option } from "@/type";
@@ -30,6 +33,7 @@ type Props = {
 export const Header = (props: Props) => {
   const { option, setOption } = props;
   const { isOpen, onToggle } = useDisclosure();
+  const { isOpen: isHintOpen, onOpen: onHintOpen, onClose: onHintClose } = useDisclosure();
   const width = { base: "100%", md: "280px" };
   const wideHeader = useWideHeader();
 
@@ -83,7 +87,15 @@ export const Header = (props: Props) => {
               w="100%"
               boxShadow="0 0 10px -3px #0008"
               borderColor="transparent"
-            />
+              pl="200px"
+              pt="10px"
+            >
+              <Button onClick={onHintOpen} bgColor={isHintOpen ? "gray.600" : "gray.300"}>
+                <Tooltip>
+                  <AiOutlineInfoCircle />
+                </Tooltip>
+              </Button>
+            </Box>
             <VStack h="calc(100svh - 60px)" mt="60px" pt="16px" px="26px" gap={2} color="gray.600" overflowY="scroll">
               <TypeFilterSetting option={option} setOption={setOption} />
               <Divider borderColor="gray.600" pt={4} />
@@ -183,6 +195,7 @@ export const Header = (props: Props) => {
             </VStack>
           </Box>
         </SlideFade>
+        <DisplayHintModal isOpen={isHintOpen} onClose={onHintClose} />
       </Box>
     </>
   );
