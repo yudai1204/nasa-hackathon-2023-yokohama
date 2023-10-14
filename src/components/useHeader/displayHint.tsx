@@ -15,7 +15,7 @@ import { ExplainBox } from "./explainBox";
 const manipulations = [
   {
     subtitle: "3D model of the Moon",
-    children: "Scroll and rotate the month by clicking on it.",
+    children: "Scroll and rotate the moon by clicking on it.",
   },
   {
     subtitle: "2D Map",
