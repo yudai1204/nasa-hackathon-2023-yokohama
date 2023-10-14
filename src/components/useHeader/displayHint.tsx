@@ -14,6 +14,10 @@ import { ExplainBox } from "./explainBox";
 
 const manipulations = [
   {
+    subtitle: "3D model of the Moon",
+    children: "Scroll and rotate the moon by clicking on it.",
+  },
+  {
     subtitle: "2D Map",
     children: "Scroll up and zoom to switch to 2D map.",
   },
@@ -68,7 +72,7 @@ export const DisplayHintModal = (props: Props) => {
             <Text fontWeight="bold" fontSize="140%">
               Overview
             </Text>
-            <Box pl="20px" pr="20px" pt="10px" pb="10px">
+            <Box px="20px" py="10px">
               <Text>
                 This application displays moonquakes observed by Apollo, and by combining them with other data, you can
                 examine the mechanism of it.
@@ -88,7 +92,7 @@ export const DisplayHintModal = (props: Props) => {
             <Text fontWeight="bold" fontSize="140%">
               Methods of operation
             </Text>
-            <Box pl="20px" pr="20px" pt="10px" pb="10px">
+            <Box px="20px" py="10px">
               {manipulations.map((manipulation, idx) => (
                 <ExplainBox key={idx} subtitle={manipulation.subtitle}>
                   {manipulation.children}
