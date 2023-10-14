@@ -32,7 +32,7 @@ export const Moon = (props: Props) => {
         <sphereGeometry args={[radius, 128, 64]} />
         <meshPhysicalMaterial map={moonMap} />
       </mesh>
-      <Text
+      {/* <Text
         position={[0, 0, radius + 5]}
         fontSize={6}
         color="white"
@@ -41,7 +41,7 @@ export const Moon = (props: Props) => {
         onClick={() => alert("neko")}
       >
         Moon
-      </Text>
+      </Text> */}
       {moonquakeData.map((moonquake, idx) => (
         <Pin
           key={idx}
