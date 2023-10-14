@@ -1,4 +1,4 @@
-import { Text } from "@react-three/drei";
+// import { Text } from "@react-three/drei";
 import { useFrame, useLoader } from "@react-three/fiber";
 import React from "react";
 import { Group, TextureLoader } from "three";
