@@ -37,13 +37,13 @@ const mapData = [
   },
   {
     name: "Apollo 12",
-    lng: 23,
-    lat: 3,
+    lng: -23,
+    lat: -3,
   },
   {
     name: "Apollo 11",
-    lng: 169,
-    lat: 13,
+    lng: 23,
+    lat: 1,
   },
   {
     name: "HAKUTO-R collision point",
@@ -52,8 +52,23 @@ const mapData = [
   },
   {
     name: "Apollo 14",
-    lng: 20,
-    lat: 3,
+    lng: -18,
+    lat: -4,
+  },
+  {
+    name: "Apollo 15",
+    lng: 3,
+    lat: 26,
+  },
+  {
+    name: "Apollo 16",
+    lng: 15,
+    lat: -9,
+  },
+  {
+    name: "Apollo 17",
+    lng: 31,
+    lat: 20,
   },
   {
     name: "Kepler",
@@ -78,7 +93,7 @@ export const Moon = (props: Props) => {
   useFrame(() => {
     const moon = moonRef.current;
     if (!moon || !option.autoRotate) return;
-    // moon.rotation.y += 0.0005;
+    moon.rotation.y += 0.0005;
     setMoonRotate(moon.rotation.y);
   });
 
