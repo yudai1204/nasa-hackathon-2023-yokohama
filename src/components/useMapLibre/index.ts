@@ -23,12 +23,24 @@ type Props = {
   setIsMap: React.Dispatch<React.SetStateAction<boolean>>;
   setChoiceMoonquake: React.Dispatch<React.SetStateAction<MoonquakeData | null>>;
   setLngLats: React.Dispatch<React.SetStateAction<[LngLat, LngLat]>>;
+  setMapCenter: React.Dispatch<React.SetStateAction<LngLat>>;
   option: Option;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   toast: any;
 };
 export const mapLibreLogic = (props: Props) => {
-  const { container, latitude, longitude, zoom, setIsMap, setChoiceMoonquake, setLngLats, option, toast } = props;
+  const {
+    container,
+    latitude,
+    longitude,
+    zoom,
+    setIsMap,
+    setChoiceMoonquake,
+    setLngLats,
+    option,
+    toast,
+    setMapCenter,
+  } = props;
   console.log(latitude, longitude);
   if (container === null) return;
   const map = new maplibregl.Map({
@@ -164,6 +176,7 @@ export const mapLibreLogic = (props: Props) => {
       const sw = bounds.getSouthWest();
       const ne = bounds.getNorthEast();
       setLngLats([sw, ne]);
+      setMapCenter(map.getCenter());
     });
 
     map.on("click", "geojson-points", (e) => {
