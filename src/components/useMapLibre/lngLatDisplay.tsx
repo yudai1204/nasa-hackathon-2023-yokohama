@@ -17,6 +17,9 @@ export const LngLatDisplay = (props: Props) => {
     return Math.floor(((pageWidthLng * 100) / windowWidth) * 15.16 * cos);
   }, [lngLats, windowWidth]);
 
+  const lngParse = Math.floor((lngLats[0].lng + lngLats[1].lng) / 2) - 90;
+  const lng = lngParse < -180 ? lngParse + 360 : lngParse;
+
   return (
     <Flex position="absolute" w="100%" bottom={50} zIndex={1} align="center" justify="center" userSelect="none">
       <Flex
@@ -35,7 +38,7 @@ export const LngLatDisplay = (props: Props) => {
         <Box w="100%">
           <Text fontSize="16px" color="white">
             <span style={{ display: "inline-block", width: "85px" }}>Longitude:</span>
-            {Math.floor((lngLats[0].lng + lngLats[1].lng) / 4)}°
+            {lng}°
           </Text>
           <Text fontSize="16px" color="white">
             <span style={{ display: "inline-block", width: "85px" }}>Latitude:</span>

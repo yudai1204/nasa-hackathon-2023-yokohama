@@ -5,7 +5,7 @@ export const genQuakeSourceData = (moonquakeData: MoonquakeData[]): GeoJSONSourc
   const features = moonquakeData.map((data) => ({
     type: "Feature",
     properties: { prop: JSON.stringify(data) },
-    geometry: { type: "Point", coordinates: [data.location.longitude, data.location.latitude] },
+    geometry: { type: "Point", coordinates: [data.location.longitude + 90, data.location.latitude * 1.2] },
   }));
 
   const ret: GeoJSONSourceSpecification = {

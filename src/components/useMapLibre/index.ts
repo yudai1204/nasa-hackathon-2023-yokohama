@@ -29,6 +29,7 @@ type Props = {
 };
 export const mapLibreLogic = (props: Props) => {
   const { container, latitude, longitude, zoom, setIsMap, setChoiceMoonquake, setLngLats, option, toast } = props;
+  console.log(latitude, longitude);
   if (container === null) return;
   const map = new maplibregl.Map({
     container,
@@ -88,6 +89,10 @@ export const mapLibreLogic = (props: Props) => {
   });
 
   map.on("load", async () => {
+    map.flyTo({
+      center: [latitude, longitude],
+      essential: true,
+    });
     // 月地震データを読み込む
     const shallowMoonquakes = filterMoonQuake(await fetchShallowMoonquakeCSV(), option);
     const deepMoonquakes = filterMoonQuake(await fetchDeepMoonquakeCSV(), option);

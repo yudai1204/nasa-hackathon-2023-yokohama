@@ -8,7 +8,7 @@ import { Panel } from "./panel";
 import { MainCanvas } from "./useThree/mainCanvas";
 import { Play } from "./useThree/play";
 import { YearSlider } from "./useThree/yearSlider";
-import { MoonquakeData, Option, OptionConstants } from "@/type";
+import { MoonquakeData, Option, OptionConstants, LngLat } from "@/type";
 import { fetchArtificialImpactCSV, fetchDeepMoonquakeCSV, fetchShallowMoonquakeCSV } from "@/utils/fetchMoonquakeCSV";
 import { filterMoonQuake } from "@/utils/filterMoonquake";
 
@@ -30,6 +30,7 @@ export const Main = () => {
   const [choiceMoonquake, setChoiceMoonquake] = useState<MoonquakeData | null>(null);
   const [displayZoomHint, setDisplayZoomHint] = useState(true);
   const [displayClickHint, setDisplayClickHint] = useState(true);
+  const [mapCenter, setMapCenter] = useState<LngLat>({ lng: 90, lat: 0 });
 
   useEffect(() => {
     setLoadingPageStep(1);
@@ -69,7 +70,14 @@ export const Main = () => {
           zIndex={isMap ? 0 : -1}
           onClick={() => setDisplayClickHint(false)}
         >
-          <MapComponent setIsMap={setIsMap} setChoiceMoonquake={setChoiceMoonquake} option={option} />
+          <MapComponent
+            setIsMap={setIsMap}
+            setChoiceMoonquake={setChoiceMoonquake}
+            option={option}
+            mapCenter={mapCenter}
+            setMapCenter={setMapCenter}
+            isMap={isMap}
+          />
         </Box>
       )}
 
@@ -90,6 +98,7 @@ export const Main = () => {
             choiceMoonquake={choiceMoonquake}
             setChoiceMoonquake={setChoiceMoonquake}
             setDisplayHint={setDisplayZoomHint}
+            setMapCenter={setMapCenter}
           />
         </Box>
       )}
