@@ -13,9 +13,12 @@ type Props = {
   setIsMap: React.Dispatch<React.SetStateAction<boolean>>;
   setChoiceMoonquake: React.Dispatch<React.SetStateAction<MoonquakeData | null>>;
   option: Option;
+  mapCenter: LngLat;
+  isMap: boolean;
+  setMapCenter: React.Dispatch<React.SetStateAction<LngLat>>;
 };
 export const MapComponent = (props: Props) => {
-  const { setIsMap, setChoiceMoonquake, option } = props;
+  const { setIsMap, setChoiceMoonquake, option, mapCenter, isMap } = props;
   const [lngLats, setLngLats] = React.useState<[LngLat, LngLat]>(defaultLngLats);
   const mapContainer = useRef(null);
   const removeFunc = useRef<(() => void) | undefined>();
@@ -36,9 +39,9 @@ export const MapComponent = (props: Props) => {
   useEffect(() => {
     const mapPosition = {
       container: mapContainer.current,
-      latitude: 0,
-      longitude: 0,
-      zoom: 1,
+      latitude: mapCenter.lng,
+      longitude: mapCenter.lat,
+      zoom: 3,
       setIsMap,
       setChoiceMoonquake,
       setLngLats,
@@ -47,7 +50,8 @@ export const MapComponent = (props: Props) => {
     };
     if (removeFunc.current) removeFunc.current();
     removeFunc.current = mapLibreLogic(mapPosition);
-  }, [mapContainer, setIsMap, setChoiceMoonquake, option, toast]);
+    setLngLats([mapCenter, mapCenter]);
+  }, [mapContainer, setIsMap, setChoiceMoonquake, option, toast, isMap]);
 
   return (
     <>

@@ -1,11 +1,11 @@
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import { Earth } from "./earth";
 import { Moon } from "./moon";
 import { Universe } from "./universe";
-import type { MoonquakeData } from "@/type";
+import type { MoonquakeData, LngLat } from "@/type";
 import { Option } from "@/type/option";
 import { useWideHeader } from "@/utils/useWideHeader";
 
@@ -16,13 +16,22 @@ type Props = {
   choiceMoonquake: MoonquakeData | null;
   setChoiceMoonquake: React.Dispatch<React.SetStateAction<MoonquakeData | null>>;
   setDisplayHint: React.Dispatch<React.SetStateAction<boolean>>;
+  setMapCenter: React.Dispatch<React.SetStateAction<LngLat>>;
 };
 export const MainCanvas = (props: Props) => {
-  const { moonquakeData, setIsMap, option, choiceMoonquake, setChoiceMoonquake, setDisplayHint } = props;
+  const { moonquakeData, setIsMap, option, choiceMoonquake, setChoiceMoonquake, setDisplayHint, setMapCenter } = props;
 
   const orbitControlsRef = useRef<OrbitControlsImpl>(null);
 
-  const handleOrbitControlsChange = () => {
+  const [moonRotate, setMoonRotate] = useState<number>(0);
+
+  // eslint-disable-next-line
+  const handleOrbitControlsChange = (e: any) => {
+    // 横移動、縦移動
+    // lng, latに変換可能
+    const lng = (((e.target.getAzimuthalAngle() + moonRotate) % Math.PI) * 180) / Math.PI;
+    const lat = ((Math.PI / 2 - e.target.getPolarAngle()) * 180) / Math.PI;
+    setMapCenter({ lng, lat });
     setDisplayHint(false);
     const orbitControls = orbitControlsRef.current;
     if (!orbitControls) return;
@@ -39,7 +48,7 @@ export const MainCanvas = (props: Props) => {
         fov: 45,
         near: 0.1,
         far: 1000,
-        position: [300, 100, 0],
+        position: [300, 0, 0],
       }}
       style={{ background: "black" }}
     >
@@ -57,6 +66,7 @@ export const MainCanvas = (props: Props) => {
         moonquakeData={moonquakeData}
         choiceMoonquake={choiceMoonquake}
         setChoiceMoonquake={setChoiceMoonquake}
+        setMoonRotate={setMoonRotate}
       />
       {!option.performanceMode && <Earth option={option} />}
       <Universe />

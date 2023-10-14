@@ -1,3 +1,4 @@
+import { Text } from "@react-three/drei";
 import { useFrame, useLoader } from "@react-three/fiber";
 import React from "react";
 import { Group, TextureLoader } from "three";
@@ -9,10 +10,11 @@ type Props = {
   moonquakeData: MoonquakeData[];
   choiceMoonquake: MoonquakeData | null;
   setChoiceMoonquake: React.Dispatch<React.SetStateAction<MoonquakeData | null>>;
+  setMoonRotate: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export const Moon = (props: Props) => {
-  const { option, moonquakeData, choiceMoonquake, setChoiceMoonquake } = props;
+  const { option, moonquakeData, choiceMoonquake, setChoiceMoonquake, setMoonRotate } = props;
   const moonRef = React.useRef<Group>(null);
   const radius = 100;
   const moonMap = useLoader(TextureLoader, "moon.webp");
@@ -20,7 +22,8 @@ export const Moon = (props: Props) => {
   useFrame(() => {
     const moon = moonRef.current;
     if (!moon || !option.autoRotate) return;
-    moon.rotation.y += 0.0005;
+    // moon.rotation.y += 0.0005;
+    setMoonRotate(moon.rotation.y);
   });
 
   return (
@@ -29,6 +32,16 @@ export const Moon = (props: Props) => {
         <sphereGeometry args={[radius, 128, 64]} />
         <meshPhysicalMaterial map={moonMap} />
       </mesh>
+      <Text
+        position={[0, 0, radius + 5]}
+        fontSize={6}
+        color="white"
+        anchorX="center"
+        anchorY="middle"
+        onClick={() => alert("neko")}
+      >
+        Moon
+      </Text>
       {moonquakeData.map((moonquake, idx) => (
         <Pin
           key={idx}
