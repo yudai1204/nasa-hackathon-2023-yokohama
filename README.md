@@ -1,55 +1,72 @@
-# NASAハッカソン
+# Moonquake Map - NASA Space Apps Challange
 
-デプロイ先
-[https://nasa-hackathon-2023-yokohama.vercel.app/]
+LANG: **EN** / [JP](/README_ja.md)
 
-## インストール
+## About this project
 
-まず以下のコマンドで依存関係をインストール
+This is a webapp project made for `NASA Space Apps Challange 2023`.  
+We produce a moonquake map with SPA.    
+You can combine 2D and 3D moonquake information with large amounts of data!
+
+Click [here](https://www.spaceappschallenge.org/2023/challenges/make-a-moonquake-map-20/) to view the page of this theme (NASA's page).
+
+### VIEW DEMO
+
+[Click Here to View the Deployment](https://nasa-hackathon-2023-yokohama.vercel.app/)
+
+| PC, 3D View        | SP, 2D View             |
+| ------------------ | ----------------------- |
+| ![image](./ss.png) | ![image](./sp_map.jpeg) |
+
+## Video
+
+[!['Watch in YouTube'](/yt_thumb.png)](https://youtu.be/Il3rgj9Lo7g?si=-aGGVKj9JFeD0UFI)
+
+## LICENSE
+
+This is an [AGPL LICENSE](./LICENSE) Project.
+
+## About us
+
+We are a team named `YokoTech` a.k.a `TechShiba`.  
+(We changed the teamname after the local challange at Yokohama.)
+
+### Members
+
+Joraku Daijiro  
+Hiyama Yudai  
+Horike Haruki  
+Taguchi Yumei  
+Aoki Ren  
+Yoshikoshi Jo
+
+## Install
+
+this project is made with `Node.js 18.17.1`.  
+You need install Node.js and install packages with npm:
 
 ```bash
 npm i
 ```
 
-以下のコマンドでサーバーを起動
+After install packages, start up the server with:
 
 ```bash
 npm run dev
 ```
 
-[http://localhost:3000](http://localhost:3000)で起動する。
+You can view tha pages at [http://localhost:3000](http://localhost:3000).
 
-
-## 導入済みライブラリ
-
-### 整形・コーディング規則
+## Libralies
 
 - eslint
 - prettier
-
-### 主要ライブラリ
-
 - [ChakraUI](https://chakra-ui.com/docs/components)
 - [Three.js](https://threejs.org/)
-- [react-three/fiber](https://docs.pmnd.rs/react-three-fiber/getting-started/introduction) (Three.jsをreactで使えるようにするライブラリ)
-
-### 便利系ライブラリ
-
-- react-hook-form（フォームを簡単に管理できる）
-- axios（REST APIの通信のため）
-
-## コーディング規則
-
-### 関数
-- function文は使わずに、なるべくアロー関数で定義する
-
-### 命名規則
-- snake_caseは基本的に使用しない（✖️user_data）
-- 変数名 と 関数名 は基本的に先頭小文字のcamelCase（⭕️ useTest, ✖️ use_test , UseTest）
-- コンポーネント名 と 型定義 は先頭大文字のPascalCase（⭕️ UserData, ✖️userData ）
-
-### その他
-- ページ本体は pagesディレクトリ以下に記述し、ファイル名は[camelCase].tsxにする
-- ファイル名とページコンポーネントは同じ名前にする（ただしコンポーネント名はPascalCase、ページ名はcamelCase）
-- コンポーネントは components以下に記述し、ファイル名は[camelCase].tsxにする
-- ロジックだけを記述した関数は util 以下に記述し、[camelCase].tsにする(JSXを書かないので.tsxにしない！！)
+- [react-three/fiber](https://docs.pmnd.rs/react-three-fiber/getting-started/introduction)
+- react-three/drei
+- MapLibre
+- axios
+- react-icons
+- ~~react-hook-form~~ (not used)
+- ~~Swiper~~ (not used)

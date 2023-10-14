@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import { Header } from "./header";
-import { HintPopup } from "./hint";
+import { ZoomHintPopup, ClickHintPopup } from "./hint";
 import { LoadingBox } from "./loadingBox";
 import { MapComponent } from "./mapLibre";
 import { Panel } from "./panel";
@@ -22,10 +22,14 @@ export const Main = () => {
     typeFilter: OptionConstants.typeFilter,
     performanceMode: OptionConstants.performanceMode,
     playInfo: OptionConstants.playInfo,
+    displayLayer: OptionConstants.displayLayer,
+    layerOpacity: OptionConstants.layerOpacity,
+    layerIdx: OptionConstants.layerIdx,
   });
   const [loadingPageStep, setLoadingPageStep] = useState(0);
   const [choiceMoonquake, setChoiceMoonquake] = useState<MoonquakeData | null>(null);
-  const [displayHint, setDisplayHint] = useState(true);
+  const [displayZoomHint, setDisplayZoomHint] = useState(true);
+  const [displayClickHint, setDisplayClickHint] = useState(true);
 
   useEffect(() => {
     setLoadingPageStep(1);
@@ -52,23 +56,40 @@ export const Main = () => {
         ))}
 
       <LoadingBox loadingPageStep={loadingPageStep} />
-      {displayHint && <HintPopup setDisplayHint={setDisplayHint} />}
+      {displayZoomHint && <ZoomHintPopup setDisplayHint={setDisplayZoomHint} />}
+      {displayClickHint && <ClickHintPopup />}
 
       {(isMap || !option.performanceMode) && (
-        <Box w="100%" h="100%" position="absolute" top={0} left={0} zIndex={isMap ? 0 : -1}>
-          <MapComponent setIsMap={setIsMap} setChoiceMoonquake={setChoiceMoonquake} />
+        <Box
+          w="100%"
+          h="100%"
+          position="absolute"
+          top={0}
+          left={0}
+          zIndex={isMap ? 0 : -1}
+          onClick={() => setDisplayClickHint(false)}
+        >
+          <MapComponent setIsMap={setIsMap} setChoiceMoonquake={setChoiceMoonquake} option={option} />
         </Box>
       )}
 
       {(!isMap || !option.performanceMode) && (
-        <Box w="100%" h="100%" position="absolute" top={0} left={0} zIndex={isMap ? -1 : 0}>
+        <Box
+          w="100%"
+          h="100%"
+          position="absolute"
+          top={0}
+          left={0}
+          zIndex={isMap ? -1 : 0}
+          onClick={() => setDisplayClickHint(false)}
+        >
           <MainCanvas
             setIsMap={setIsMap}
             moonquakeData={filterMoonQuake(moonquakeData, option)}
             option={option}
             choiceMoonquake={choiceMoonquake}
             setChoiceMoonquake={setChoiceMoonquake}
-            setDisplayHint={setDisplayHint}
+            setDisplayHint={setDisplayZoomHint}
           />
         </Box>
       )}

@@ -3,7 +3,7 @@ import { Main } from "@/components/main";
 
 export default function Home() {
   return (
-    <Box w="100%" h="100svh">
+    <Box w="100%" h="100svh" userSelect="none">
       <title>Moonquake Viewer - YokoTech (TechShiba)</title>
       <Main />
     </Box>

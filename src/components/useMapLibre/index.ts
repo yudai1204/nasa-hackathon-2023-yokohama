@@ -1,11 +1,19 @@
 import maplibregl from "maplibre-gl";
 import { genQuakeSourceData } from "./moonQuake";
-import type { MoonquakeData } from "@/type/moon";
+import type { LngLat, MoonquakeData, Option } from "@/type";
 import { fetchArtificialImpactCSV, fetchDeepMoonquakeCSV, fetchShallowMoonquakeCSV } from "@/utils/fetchMoonquakeCSV";
+import { filterMoonQuake } from "@/utils/filterMoonquake";
 
 const minZoom = 3;
 const maxZoom = 8;
 const moonQuakeRad = 16;
+
+const layerMaps = [
+  "https://trek.nasa.gov/tiles/Moon/EQ/LRO_LOLAKaguya_ClrHillshade_60N60S_512ppd/1.0.0//default/default028mm/{z}/{y}/{x}.png",
+  "https://trek.nasa.gov/tiles/Moon/EQ/Kaguya_LGM2011_FreeairGravity_Colorized_Global_mgal3m_20ppd/1.0.0//default/default028mm/{z}/{y}/{x}.png",
+  "https://trek.nasa.gov/tiles/Moon/EQ/gggrx_1200a_boug_l180.eq/1.0.0//default/default028mm/{z}/{y}/{x}.png",
+  "https://trek.nasa.gov/tiles/Moon/EQ/Model1_cmi.eq/1.0.0//default/default028mm/{z}/{y}/{x}.png",
+];
 
 type Props = {
   container: HTMLElement | null;
@@ -14,9 +22,13 @@ type Props = {
   zoom: number;
   setIsMap: React.Dispatch<React.SetStateAction<boolean>>;
   setChoiceMoonquake: React.Dispatch<React.SetStateAction<MoonquakeData | null>>;
+  setLngLats: React.Dispatch<React.SetStateAction<[LngLat, LngLat]>>;
+  option: Option;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  toast: any;
 };
 export const mapLibreLogic = (props: Props) => {
-  const { container, latitude, longitude, zoom, setIsMap, setChoiceMoonquake } = props;
+  const { container, latitude, longitude, zoom, setIsMap, setChoiceMoonquake, setLngLats, option, toast } = props;
   if (container === null) return;
   const map = new maplibregl.Map({
     container,
@@ -38,9 +50,7 @@ export const mapLibreLogic = (props: Props) => {
         },
         test: {
           type: "raster",
-          tiles: [
-            "https://trek.nasa.gov/tiles/Moon/EQ/LRO_LOLAKaguya_ClrHillshade_60N60S_512ppd/1.0.0//default/default028mm/{z}/{y}/{x}.png",
-          ],
+          tiles: [layerMaps[option.layerIdx]],
           tileSize: 256,
         },
       },
@@ -55,7 +65,7 @@ export const mapLibreLogic = (props: Props) => {
           type: "raster",
           source: "test",
           paint: {
-            "raster-opacity": 0.4,
+            "raster-opacity": option.displayLayer ? option.layerOpacity : 0,
           },
         },
       ],
@@ -79,9 +89,9 @@ export const mapLibreLogic = (props: Props) => {
 
   map.on("load", async () => {
     // 月地震データを読み込む
-    const shallowMoonquakes = (await fetchShallowMoonquakeCSV()) as MoonquakeData[];
-    const deepMoonquakes = (await fetchDeepMoonquakeCSV()) as MoonquakeData[];
-    const artificialImpacts = (await fetchArtificialImpactCSV()) as MoonquakeData[];
+    const shallowMoonquakes = filterMoonQuake(await fetchShallowMoonquakeCSV(), option);
+    const deepMoonquakes = filterMoonQuake(await fetchDeepMoonquakeCSV(), option);
+    const artificialImpacts = filterMoonQuake(await fetchArtificialImpactCSV(), option);
 
     map.addSource("shallow-moonquake-source", genQuakeSourceData(shallowMoonquakes));
     map.addSource("deep-moonquake-source", genQuakeSourceData(deepMoonquakes));
@@ -92,7 +102,7 @@ export const mapLibreLogic = (props: Props) => {
       source: "shallow-moonquake-source",
       paint: {
         "circle-radius": moonQuakeRad,
-        "circle-color": "#FFA50055",
+        "circle-color": "#FFA50088",
       },
     });
     map.addLayer({
@@ -101,7 +111,7 @@ export const mapLibreLogic = (props: Props) => {
       source: "deep-moonquake-source",
       paint: {
         "circle-radius": moonQuakeRad,
-        "circle-color": "#ee82ee55",
+        "circle-color": "#ee82ee88",
       },
     });
     map.addLayer({
@@ -110,7 +120,7 @@ export const mapLibreLogic = (props: Props) => {
       source: "artical-moonquake-source",
       paint: {
         "circle-radius": moonQuakeRad,
-        "circle-color": "#0000FF55",
+        "circle-color": "#0000FF88",
       },
     });
 
@@ -142,6 +152,27 @@ export const mapLibreLogic = (props: Props) => {
       paint: {
         "text-color": "#FFFFFF",
       },
+    });
+
+    map.on("moveend", () => {
+      const bounds = map.getBounds();
+      const sw = bounds.getSouthWest();
+      const ne = bounds.getNorthEast();
+      setLngLats([sw, ne]);
+    });
+
+    map.on("click", "geojson-points", (e) => {
+      const feature = e.features?.length && e.features[0];
+      if (!feature) return;
+      const properties = feature.properties;
+      console.log(properties);
+      toast({
+        title: properties.name,
+        description: properties.detail,
+        position: "top",
+        duration: 4000,
+        isClosable: true,
+      });
     });
 
     map.on("click", "shallow-moonquake-layer", (e) => {
