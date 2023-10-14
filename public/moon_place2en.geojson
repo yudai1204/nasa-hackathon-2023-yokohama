@@ -41,7 +41,27 @@
         "detail": "The largest sea on the moon. Luna 9 and Surveyor 1 landed here. In the western part of the Ocean of Storms, the world's first hole leading underground was discovered.",
         "diameter": "2568km"
       },
-      "geometry": { "type": "Point", "coordinates": [65.050178081987937, 33.847369193532948] }
+      "geometry": { "type": "Point", "coordinates": [60.050178081987937, 29.847369193532948] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": null,
+        "name": "Luna 13",
+        "detail": "Luna 13 was launched on December 21, 1966, and successfully landed on the Moon on December 24, 1966.",
+        "diameter": ""
+      },
+      "geometry": { "type": "Point", "coordinates": [55.050178081987937, 26.847369193532948] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": null,
+        "name": "Luna 9",
+        "detail": "Luna 9 was designed as a lunar lander, part of the Soviet Union's Luna programme, aiming to achieve a soft landing on the Moon and transmit photographic data from the lunar surface back to Earth.",
+        "diameter": ""
+      },
+      "geometry": { "type": "Point", "coordinates": [40.050178081987937, 17.847369193532948] }
     },
     {
       "type": "Feature",
@@ -72,6 +92,26 @@
         "diameter": ""
       },
       "geometry": { "type": "Point", "coordinates": [142.052690461328801, -10.771676499122588] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": null,
+        "name": "Surveyor 3 Landing Site",
+        "detail": "",
+        "diameter": ""
+      },
+      "geometry": { "type": "Point", "coordinates": [148.052690461328801, -10.771676499122588] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": null,
+        "name": "Surveyor 6 Landing Site",
+        "detail": "Surveyor 6 aimed to study the feasibility of future human missions to the Moon.",
+        "diameter": ""
+      },
+      "geometry": { "type": "Point", "coordinates": [177.052690461328801, 14.771676499122588] }
     },
     {
       "type": "Feature",
@@ -152,6 +192,16 @@
         "diameter": "101km"
       },
       "geometry": { "type": "Point", "coordinates": [161.199111647434879, 71.19960301796182] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": null,
+        "name": "Chang'e 5",
+        "detail": "Chang'e 5, the fifth mission in the Chinese Lunar Exploration Program, aimed to collect lunar samples and return them to Earth.",
+        "diameter": "101km"
+      },
+      "geometry": { "type": "Point", "coordinates": [95.199111647434879, 71.19960301796182] }
     },
     {
       "type": "Feature",
