@@ -21,7 +21,7 @@ export type Option = {
 };
 
 export class OptionConstants {
-  static readonly autoRotate = true;
+  static readonly autoRotate = false;
   static readonly performanceMode = false;
   static readonly minYear = 1965;
   static readonly maxYear = 1980;
